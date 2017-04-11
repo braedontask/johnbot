@@ -174,7 +174,7 @@ function sendGenericMessage(recipientId) {
 function callSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        qs: { access_token: 'EAAUAYhyZBo5kBAHmZCU3tOvvZC7BrO7lUugcJkWB9ZCgVZA1tfRac8WXbZBlMGL59akG4yrMmS8UgSQVmsZCTmIPaFYwMDZBW0JyAJLQ7mcJHYJ2OFsMDtmyyy2cySF7HD0IXgY2kFDrwg7UaBLPbjmg0vBFLA7I2ajudlTYSUq5QQZDZD' },
         method: 'POST',
         json: messageData
 
