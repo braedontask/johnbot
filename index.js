@@ -79,11 +79,35 @@ function generate(word) {
     return new RegExp('\\b' + word + '\\b');
 }
 
+function generateOr(lst, query) {
+    lst.forEach(function (word) {
+        if (generate(word).test(query)) {
+            return true;
+        }
+    });
+
+    // no matches
+    return false;
+}
+
+function generateAnd(lst, query) {
+    lst.forEach(function (word) {
+        if (!generate(word).test(query)) {
+            return false;
+        }
+    });
+
+    // all matches
+    return true;
+}
+
 function routeRequests(m, id) {
     if (m === 'generic') {
         sendGenericMessage(id)
-    } else if (generate('who').test(m)) {
-        sendTextMessage(id, "My name is John.")
+    } else if (generateOr(['who', 'name'], m)) {
+        sendTextMessage(id, "My name is John. Thanks for asking!")
+    } else if (generateAnd(['when', 'written'], m)) {
+        sendTextMessage(id, "I wrote the Book of Revelation around 95 CE.")
     } else {
         sendTextMessage(id, m)
     }
