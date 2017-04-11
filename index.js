@@ -75,11 +75,17 @@ function receivedMessage(event) {
     }
 }
 
-function routeRequests(message, id) {
-    if (message === 'generic') {
+function generate(word) {
+    return new RegExp('\\b' + word + '\\b');
+}
+
+function routeRequests(m, id) {
+    if (m === 'generic') {
         sendGenericMessage(id)
+    } else if (generate(who).test(m)) {
+        sendTextMessage(id, "My name is John.")
     } else {
-        sendTextMessage(id, message)
+        sendTextMessage(id, m)
     }
 }
 
@@ -110,6 +116,7 @@ function sendTextMessage(recipientId, messageText) {
         }
     };
 
+    // make POST call
     callSendAPI(messageData);
 }
 
@@ -157,6 +164,7 @@ function sendGenericMessage(recipientId) {
         }
     };
 
+    // make POST call
     callSendAPI(messageData);
 }
 
