@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
-const config = require('config');
+const config = require('./config');
 
 var app = express();
 
@@ -82,7 +82,7 @@ function generate(word) {
 function routeRequests(m, id) {
     if (m === 'generic') {
         sendGenericMessage(id)
-    } else if (generate(who).test(m)) {
+    } else if (generate('who').test(m)) {
         sendTextMessage(id, "My name is John.")
     } else {
         sendTextMessage(id, m)
