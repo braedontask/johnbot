@@ -80,22 +80,22 @@ function generate(word) {
 }
 
 function generateOr(lst, query) {
-    lst.forEach(function (word) {
-        if (generate(word).test(query)) {
+    for (var i = 0; i < lst.length; i++) {
+        if (generate(lst[i]).test(query)) {
             return true;
         }
-    });
+    }
 
     // no matches
     return false;
 }
 
 function generateAnd(lst, query) {
-    lst.forEach(function (word) {
-        if (!generate(word).test(query)) {
+    for (var i = 0; i < lst.length; i++) {
+        if (!generate(lst[i]).test(query)) {
             return false;
         }
-    });
+    }
 
     // all matches
     return true;
