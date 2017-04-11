@@ -21,7 +21,7 @@ app.get('/webhook', function (req, res) {
     }
 });
 
-// handler receiving messages
+/*// handler receiving messages
 app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
@@ -42,9 +42,106 @@ app.post('/webhook', function (req, res) {
         }
     }
     res.sendStatus(200);
+});*/
+
+app.post('/webhook', function (req, res) {
+    var data = req.body;
+
+    // Make sure this is a page subscription
+    if (data.object === 'page') {
+
+        // Iterate over each entry - there may be multiple if batched
+        data.entry.forEach(function(entry) {
+            var pageID = entry.id;
+            var timeOfEvent = entry.time;
+
+            // Iterate over each messaging event
+            entry.messaging.forEach(function(event) {
+                if (event.message) {
+                    receivedMessage(event);
+                } else {
+                    console.log("Webhook received unknown event: ", event);
+                }
+            });
+        });
+
+        // Assume all went well.
+        res.sendStatus(200);
+    }
 });
 
-function chunkText(text) {
+function receivedMessage(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+    var timeOfMessage = event.timestamp;
+    var message = event.message;
+
+    console.log("Received message for user %d and page %d at %d with message:",
+        senderID, recipientID, timeOfMessage);
+    console.log(JSON.stringify(message));
+
+    var messageId = message.mid;
+
+    var messageText = message.text;
+    var messageAttachments = message.attachments;
+
+    if (messageText) {
+
+        // If we receive a text message, check to see if it matches a keyword
+        // and send back the example. Otherwise, just echo the text we received.
+        switch (messageText) {
+            case 'generic':
+                sendGenericMessage(senderID);
+                break;
+
+            default:
+                sendTextMessage(senderID, messageText);
+        }
+    } else if (messageAttachments) {
+        sendTextMessage(senderID, "Message with attachment received");
+    }
+}
+
+function sendGenericMessage(recipientId, messageText) {
+    // To be expanded in later sections
+}
+
+function sendTextMessage(recipientId, messageText) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: messageText
+        }
+    };
+
+    callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: messageData
+
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var recipientId = body.recipient_id;
+            var messageId = body.message_id;
+
+            console.log("Successfully sent generic message with id %s to recipient %s",
+                messageId, recipientId);
+        } else {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        }
+    });
+}
+
+/*function chunkText(text) {
     var chunks = text.match(/(.|[\r\n]){1,600}/g);
     return chunks;
 };
@@ -53,7 +150,7 @@ function chunkText(text) {
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+        qs: { access_token: PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
             recipient: {id: recipientId},
@@ -70,7 +167,7 @@ function sendMessage(recipientId, message) {
 
 function navySealMessage(recipientId, text) {
     if (text.toLowerCase() === 'spaghetti') {
-        var navySealCopypasta = "What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.";
+        var navySealCopypasta = "hi";
         var chunkySeal = chunkText(navySealCopypasta);
         chunkySeal.reverse().forEach(function(chunk) {
             //TODO: FIX THIS QUICK FIX
@@ -116,4 +213,4 @@ function kittenMessage(recipientId, text) {
         return true;
     }
     return false;
-};
+};*/
