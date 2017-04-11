@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
+const config = require('config');
 
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Webhook validation
+// webhook validation
 app.get('/webhook', function(req, res) {
     if (req.query['hub.mode'] === 'subscribe' &&
         req.query['hub.verify_token'] === 'johnbot_verify_token') {
@@ -20,20 +21,17 @@ app.get('/webhook', function(req, res) {
     }
 });
 
-// Display the web page
+// display the web page
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/index.html'));
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-// Message processing
+// message processing
 app.post('/webhook', function (req, res) {
-    console.log(req.body);
     var data = req.body;
 
-    // Make sure this is a page subscription
+    // verify page subscription
     if (data.object === 'page') {
-
-        // Iterate over each entry - there may be multiple if batched
         data.entry.forEach(function(entry) {
             var pageID = entry.id;
             var timeOfEvent = entry.time;
@@ -45,21 +43,17 @@ app.post('/webhook', function (req, res) {
                 } else if (event.postback) {
                     receivedPostback(event);
                 } else {
-                    console.log("Webhook received unknown event: ", event);
+                    console.log("Oh no! An unknown event was received: ", event);
                 }
             });
         });
 
-        // Assume all went well.
-        //
-        // You must send back a 200, within 20 seconds, to let us know
-        // you've successfully received the callback. Otherwise, the request
-        // will time out and we will keep trying to resend.
+        // success
         res.sendStatus(200);
     }
 });
 
-// Incoming events handling
+// incoming events handling
 function receivedMessage(event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
@@ -71,23 +65,21 @@ function receivedMessage(event) {
     console.log(JSON.stringify(message));
 
     var messageId = message.mid;
-
     var messageText = message.text;
     var messageAttachments = message.attachments;
 
     if (messageText) {
-        // If we receive a text message, check to see if it matches a keyword
-        // and send back the template example. Otherwise, just echo the text we received.
-        switch (messageText) {
-            case 'generic':
-                sendGenericMessage(senderID);
-                break;
-
-            default:
-                sendTextMessage(senderID, messageText);
-        }
+        routeRequests(messageText, senderID);
     } else if (messageAttachments) {
         sendTextMessage(senderID, "Message with attachment received");
+    }
+}
+
+function routeRequests(message, id) {
+    if (message === 'generic') {
+        sendGenericMessage(id)
+    } else {
+        sendTextMessage(id, message)
     }
 }
 
@@ -103,14 +95,11 @@ function receivedPostback(event) {
     console.log("Received postback for user %d and page %d with payload '%s' " +
         "at %d", senderID, recipientID, payload, timeOfPostback);
 
-    // When a postback is called, we'll send a message back to the sender to
-    // let them know it was successful
+    // confirmation of postback
     sendTextMessage(senderID, "Postback called");
 }
 
-//////////////////////////
-// Sending helpers
-//////////////////////////
+// sending helpers
 function sendTextMessage(recipientId, messageText) {
     var messageData = {
         recipient: {
@@ -171,13 +160,13 @@ function sendGenericMessage(recipientId) {
     callSendAPI(messageData);
 }
 
+// return POST response to Facebook server
 function callSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: { access_token: 'EAAUAYhyZBo5kBAHmZCU3tOvvZC7BrO7lUugcJkWB9ZCgVZA1tfRac8WXbZBlMGL59akG4yrMmS8UgSQVmsZCTmIPaFYwMDZBW0JyAJLQ7mcJHYJ2OFsMDtmyyy2cySF7HD0IXgY2kFDrwg7UaBLPbjmg0vBFLA7I2ajudlTYSUq5QQZDZD' },
+        qs: { access_token: config.access_token },
         method: 'POST',
         json: messageData
-
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var recipientId = body.recipient_id;
@@ -193,7 +182,7 @@ function callSendAPI(messageData) {
     });
 }
 
-// Set Express to listen out for HTTP requests
+// set up Express server for HTTP requests
 var server = app.listen(process.env.PORT || 3000, function () {
     console.log("Listening on port %s", server.address().port);
 });
