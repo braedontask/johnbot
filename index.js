@@ -242,11 +242,13 @@ function sendVerse(recipientId) {
         })
         .then(function(json) {
             var quote = '\"' + json[0].text.replace(/&#8211;/g,'') + '\"';
-            sendTextMessage(recipientId, quote);
             setTimeout(function () {
-                var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
-                sendTextMessage(recipientId, caption);
-            }, 150);
+                sendTextMessage(recipientId, quote);
+                setTimeout(function () {
+                    var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
+                    sendTextMessage(recipientId, caption);
+                }, 150);
+            }, 2000);
         })
         .catch(function(err) {
             sendTextMessage(recipientId, 'Revelation 22:13');
