@@ -233,7 +233,7 @@ function sendVerse(recipientId) {
             setTimeout(function () {
                 var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
                 sendTextMessage(recipientId, caption);
-            }, 1);
+            }, 100);
         })
         .catch(function(err) {
             sendTextMessage(recipientId, 'Revelation 22:13');
