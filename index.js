@@ -228,11 +228,10 @@ function sendVerse(recipientId) {
             return res.json();
         })
         .then(function(json) {
-            sendTextMessage(recipientId, 'Ok...just imagine me reading this out like an epistle in front of a receptive ' +
-                'community of budding Christians who overlook how trippy my visions are...');
             var caption = 'Revelation ' + chapter + ':' + verse;
             sendTextMessage(recipientId, caption);
-            sendTextMessage(recipientId, json[0].text);
+            var quote = '\"' + json[0].text + '\"';
+            sendTextMessage(recipientId, quote);
         })
         .catch(function(err) {
             sendTextMessage(recipientId, 'Revelation 22:13');
