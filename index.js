@@ -138,7 +138,6 @@ function sendTextMessage(recipientId, messageText) {
         recipient: {
             id: recipientId
         },
-        sender_action: 'typing_on',
         message: {
             text: messageText
         }
@@ -148,7 +147,20 @@ function sendTextMessage(recipientId, messageText) {
     callSendAPI(messageData);
 }
 
+function loading(recipientId) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        sender_action: 'typing_on'
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
 function sendVerse(recipientId) {
+    loading(recipientId);
     var base = 'http://labs.bible.org/api/?passage=Revelation%20';
     var chapter = (Math.floor(Math.random() * 22) + 1).toString();
     var max;
