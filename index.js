@@ -148,12 +148,12 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendVerse(recipientId) {
-    var verse = text.getVerse();
+    //var verse = text.getVerse();
     sendTextMessage(recipientId, 'Ok...just imagine me reading this out like an epistle in front of a receptive ' +
     'community of budding Christians who overlook how trippy my visions are...');
-    var caption = 'Revelation ' + verse.chapter + ':' + verse.verse;
+    var caption = 'Revelation ' + '3' + ':' + '4';
     sendTextMessage(recipientId, caption);
-    sendTextMessage(recipientId, verse.text);
+    sendTextMessage(recipientId, 'hi');
 }
 
 function sendErrorMessage(recipientId) {
