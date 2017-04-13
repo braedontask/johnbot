@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 module.exports = {
     getVerse: function() {
         var base = 'http://labs.bible.org/api/?passage=Revelation+';
