@@ -247,7 +247,7 @@ function sendVerse(recipientId) {
                 setTimeout(function () {
                     var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
                     sendTextMessage(recipientId, caption);
-                }, 150);
+                }, 0);
             }, 2000);
         })
         .catch(function(err) {
