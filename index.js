@@ -138,6 +138,7 @@ function sendTextMessage(recipientId, messageText) {
         recipient: {
             id: recipientId
         },
+        sender_action: 'typing_on',
         message: {
             text: messageText
         }
