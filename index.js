@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
 const config = require('./config');
+const text = require('./text');
 
 var app = express();
 
@@ -106,10 +107,12 @@ function routeRequests(m, id) {
         sendGenericMessage(id)
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
-    } else if (generateAnd(['when', 'written'], m)) {
+    } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
         sendTextMessage(id, "I wrote the Book of Revelation around 95 CE.")
+    } else if (generateOr(['verse', 'read', 'text'], m)) {
+        sendVerse(id);
     } else {
-        sendTextMessage(id, m)
+        sendErrorMessage(id)
     }
 }
 
@@ -144,6 +147,22 @@ function sendTextMessage(recipientId, messageText) {
     callSendAPI(messageData);
 }
 
+function sendVerse(recipientId) {
+    var verse = text.getVerse();
+    sendTextMessage(recipientId, 'Ok...just imagine me reading this out like an epistle in front of as receptive' +
+    'community of budding Christians who overlook how trippy my visions are...');
+    var caption = 'Revelation ' + verse.chapter + ':' + verse.verse;
+    sendTextMessage(recipientId, caption);
+    sendTextMessage(recipientId, verse.text);
+}
+
+function sendErrorMessage(recipientId) {
+    var site = 'https://boiling-retreat-40010.herokuapp.com/';
+    var text = 'Oh no! I didn\'t understand your message. I\'m not Alpha and the Omega, the beginning and the' +
+            'end (blah blah blah) by the way. Check out ' + site + ' for some things I can talk to you about.';
+    sendTextMessage(recipientId, text);
+}
+
 function sendGenericMessage(recipientId) {
     var messageData = {
         recipient: {
@@ -167,7 +186,7 @@ function sendGenericMessage(recipientId) {
                             type: "postback",
                             title: "Call Postback",
                             payload: "Payload for first bubble",
-                        }],
+                        }]
                     }, {
                         title: "touch",
                         subtitle: "Your Hands, Now in VR",
@@ -200,7 +219,7 @@ function callSendAPI(messageData) {
         method: 'POST',
         json: messageData
     }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             var recipientId = body.recipient_id;
             var messageId = body.message_id;
 
