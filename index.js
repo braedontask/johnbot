@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
+var fetch = require('node-fetch');
 const config = require('./config');
 const text = require('./text');
 
@@ -158,7 +159,7 @@ function sendVerse(recipientId) {
 
 function sendErrorMessage(recipientId) {
     var site = 'https://boiling-retreat-40010.herokuapp.com/';
-    var text = 'Oh no! I didn\'t understand your message. I\'m not Alpha and the Omega, the beginning and the' +
+    var text = 'Oh no! I didn\'t understand your message. I\'m not Alpha and the Omega, the beginning and the ' +
             'end (blah blah blah) by the way. Check out ' + site + ' for some things I can talk to you about.';
     sendTextMessage(recipientId, text);
 }
