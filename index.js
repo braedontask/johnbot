@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
+const fetch = require('node-fetch');
 const config = require('./config');
-const text = require('./text');
 
 var app = express();
 
