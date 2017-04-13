@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const request = require('request');
 
 module.exports = {
     getVerse: function() {
@@ -77,7 +78,10 @@ module.exports = {
         }
         var verse = (Math.floor(Math.random() * max) + 1).toString();
         var url = base + chapter + ':' + verse + '&type=json';
-        fetch(url)
+        request(url, function (error, response, body) {
+            return response;
+        });
+        /*fetch(url)
             .then(function(res) {
                 return res.json();
             })
@@ -92,6 +96,6 @@ module.exports = {
                     verse: '13',
                     text: 'I am Alpha and Omega, the beginning and the end, the first and the last.'
                 }
-            });
+            });*/
     }
 };
