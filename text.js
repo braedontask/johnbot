@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     getVerse: function() {
-        var base = 'https://labs.bible.org/api/?passage=Revelation%20';
+        var base = 'http://labs.bible.org/api/?passage=Revelation%20';
         var chapter = (Math.floor(Math.random() * 22) + 1).toString();
         var max;
         switch (chapter) {
@@ -82,7 +82,7 @@ module.exports = {
                 return res.json();
             })
             .then(function(json) {
-                return JSON.parse(json);
+                return json[0];
             })
             .catch(function(err) {
                 console.log('Error: ' + err);
