@@ -77,7 +77,7 @@ module.exports = {
         }
         var verse = (Math.floor(Math.random() * max) + 1).toString();
         var url = base + chapter + ':' + verse + '&type=json';
-        /*fetch(url)
+        fetch(url)
             .then(function(res) {
                 return res.json();
             })
@@ -92,6 +92,6 @@ module.exports = {
                     verse: '13',
                     text: 'I am Alpha and Omega, the beginning and the end, the first and the last.'
                 }
-            });*/
+            });
     }
 };
