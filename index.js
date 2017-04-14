@@ -4,6 +4,7 @@ const request = require('request');
 const path = require('path');
 const fetch = require('node-fetch');
 const config = require('./config');
+const helpers = require('./helpers');
 
 var app = express();
 
@@ -209,7 +210,7 @@ function sendHeaven(recipientId) {
 function sendHell(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
     var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
-                    'Enough. Said.', 'Also there are pretty clouds...', 'Dinner is served in hot pot...'];
+                    'Enough. Said.', 'Dinner is served in hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
                     'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
                     'The Last Judgment, Fra Angelico (1430)'];
@@ -247,7 +248,7 @@ function generatePictures(recipientId, titles, subtitles, urls, learns) {
                 type: "template",
                 payload: {
                     template_type: "generic",
-                    elements: elements
+                    elements: helpers.shuffle(elements)
                 }
             }
         }
