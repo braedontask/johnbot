@@ -103,8 +103,8 @@ function generateAnd(lst, query) {
 }
 
 function routeRequests(m, id) {
-    if (m === 'generic') {
-        sendGenericMessage(id)
+    if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
+        sendGreeting(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
@@ -112,7 +112,7 @@ function routeRequests(m, id) {
     } else if (generateOr(['verse', 'read', 'text'], m)) {
         sendVerse(id);
     } else {
-        sendErrorMessage(id)
+        sendErrorMessage(id);
     }
 }
 
@@ -145,6 +145,17 @@ function sendTextMessage(recipientId, messageText) {
 
     // make POST call
     callSendAPI(messageData);
+}
+
+function sendGreeting(recipientId) {
+    var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
+    'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
+    'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
+    'tell you that. Literally just watch birds fly over me and those pagans offshore have fun while I sit and ' +
+    'try to remember the name of that weirdo from Rome who kept stalking me before I was banished.', 'Hello! It\'s ' +
+    'a beautiful day out here in Patmos...said no one ever :|'];
+    var m = greetings[Math.floor(Math.random() * greetings.length)];
+    sendTextMessage(recipientId, m);
 }
 
 function loading(recipientId) {
