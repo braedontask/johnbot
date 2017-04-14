@@ -58,12 +58,12 @@ app.post('/webhook', function (req, res) {
 // incoming events handling
 function receivedMessage(event) {
     var senderID = event.sender.id;
-    var recipientID = event.recipient.id;
+    var id = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var message = event.message;
 
     console.log("Received message for user %d and page %d at %d with message:",
-        senderID, recipientID, timeOfMessage);
+        senderID, id, timeOfMessage);
     console.log(JSON.stringify(message));
 
     var messageId = message.mid;
@@ -130,7 +130,7 @@ function routeRequests(msg, id) {
 
 function receivedPostback(event) {
     var senderID = event.sender.id;
-    var recipientID = event.recipient.id;
+    var id = event.recipient.id;
     var timeOfPostback = event.timestamp;
 
     // The 'payload' param is a developer-defined field which is set in a postback
@@ -138,17 +138,17 @@ function receivedPostback(event) {
     var payload = event.postback.payload;
 
     console.log("Received postback for user %d and page %d with payload '%s' " +
-        "at %d", senderID, recipientID, payload, timeOfPostback);
+        "at %d", senderID, id, payload, timeOfPostback);
 
     // confirmation of postback
     sendTextMessage(senderID, payload);
 }
 
 // sending helpers
-function sendTextMessage(recipientId, messageText) {
+function sendTextMessage(id, messageText) {
     var messageData = {
         recipient: {
-            id: recipientId
+            id: id
         },
         message: {
             text: messageText
@@ -159,7 +159,7 @@ function sendTextMessage(recipientId, messageText) {
     callSendAPI(messageData);
 }
 
-function sendGreeting(recipientId) {
+function sendGreeting(id) {
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
@@ -173,10 +173,10 @@ function sendGreeting(recipientId) {
     'hot today here on Patmos...maybe even hotter than that lake of fire.', 'Here\'s a pacman symbol just because ' +
     ':v (even though it hasn\'t been invented yet God showed me...we in 1980 baby!)'];
     var m = greetings[Math.floor(Math.random() * greetings.length)];
-    sendTextMessage(recipientId, m);
+    sendTextMessage(id, m);
 }
 
-function sendFeeling(recipientId) {
+function sendFeeling(id) {
     var feelings = ['Good...but not great.', 'Meh :P God\'s playing games with my mind again', 'I\'m not the Alpha ' +
     'and Omega...how would I know?', 'Nah, the real question is: how are YOU?', 'Could be better...if I wasn\'t ' +
     'stuck on an island by myself.', 'How am I is relative. Relative to you, to the pagans, to my other apostle ' +
@@ -184,7 +184,7 @@ function sendFeeling(recipientId) {
     'be better but at least I\'m not running-through-the-wilderness-as-a-very-naughty-dragon-summons-a-flood-to-kill-me ' +
     'bad like the Whore of Babylon.'];
     var m = feelings[Math.floor(Math.random() * feelings.length)];
-    sendTextMessage(recipientId, m);
+    sendTextMessage(id, m);
     var answer = ['Don\'t prompt me for my inner feelings! That\'s such a God thing to do...', 'Hey, if you just saw ' +
     'all Hell break loose and a sea of blood how would you feel?', 'Forget about winter is coming--the final three ' +
     'angels are coming...it\'s gonna go from O:) to 3:) real fast...', 'Did you just spend your Saturday night ' +
@@ -192,11 +192,11 @@ function sendFeeling(recipientId) {
     ':P sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...', 'Eh. ' +
     'I\'m in one of those less-talking-more-writing-random-stuff moods.'];
     var m1 = answer[Math.floor(Math.random() * answer.length)];
-    sendButton(recipientId, 'But why John?', m1);
+    sendButton(id, 'But why John?', m1);
 }
 
-function sendHeaven(recipientId) {
-    sendTextMessage(recipientId, 'Check out these swag pictures.');
+function sendHeaven(id) {
+    sendTextMessage(id, 'Check out these swag pictures.');
     var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
     var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
     '(1541)', 'The Assumption of the Virgin, Antonio Correggio (1530)', 'The Apotheosis of St. Ignatius, Baciccio ' +
@@ -209,11 +209,11 @@ function sendHeaven(recipientId) {
     'https://www.khanacademy.org/humanities/renaissance-reformation/high-ren-florence-rome/michelangelo/a/michelangelo-last-judgment',
     'https://en.wikipedia.org/wiki/Assumption_of_the_Virgin_(Correggio)',
     'http://www.wga.hu/html_m/b/baciccio/apotheos.html'];
-    generatePictures(recipientId, titles, subtitles, urls, learns);
+    generatePictures(id, titles, subtitles, urls, learns);
 }
 
-function sendHell(recipientId) {
-    sendTextMessage(recipientId, 'Check out these swag pictures.');
+function sendHell(id) {
+    sendTextMessage(id, 'Check out these swag pictures.');
     var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
     'Enough. Said.', 'Dinner is served a la hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
@@ -227,10 +227,10 @@ function sendHell(recipientId) {
     'https://en.wikipedia.org/wiki/Isenheim_Altarpiece',
     'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights',
     'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
-    generatePictures(recipientId, titles, subtitles, urls, learns);
+    generatePictures(id, titles, subtitles, urls, learns);
 }
 
-function generatePictures(recipientId, titles, subtitles, urls, learns) {
+function generatePictures(id, titles, subtitles, urls, learns) {
     var elements = [];
     for (var i = 0; i < titles.length; i++) {
         elements.push({
@@ -246,7 +246,7 @@ function generatePictures(recipientId, titles, subtitles, urls, learns) {
     }
     var messageData = {
         recipient: {
-            id: recipientId
+            id: id
         },
         message: {
             attachment: {
@@ -282,7 +282,7 @@ function sendName(id) {
     'around my identity in popular culture that I derive such pleasure from trolling people and keeping it that way. But I\'ll spare ' +
     'you some pain and give you some information that may or may not be completely accurate :P');
     sendTextMessage(id, 'Here are some portraits of me. Not super accurate but I\'ll leave the rest of the gaps ' +
-        'to your imagination :P');
+        'to your imagination.');
     var titles = ['My beautiful face', 'Yeah, Jesus and I are tight...', 'Always up for some fine wine ladies ;)'];
     var subtitles = ['St. John the Evangelist, Domenico Zampieri (1623)', 'The Last Supper, Anonymous (1650)',
     'St. John the Apostle, Peter Paul Rubens (1611)'];
@@ -291,7 +291,7 @@ function sendName(id) {
     'http://www.artbible.info/images/rubens_apostel_johannes_grt.jpg'];
     var learns = ['https://en.wikipedia.org/wiki/John_the_Apostle', 'https://en.wikipedia.org/wiki/John_the_Apostle',
     'https://en.wikipedia.org/wiki/John_the_Apostle'];
-    generatePictures(recipientId, titles, subtitles, urls, learns);
+    generatePictures(id, titles, subtitles, urls, learns);
 }
 
 function sendAbout(id) {
@@ -395,16 +395,16 @@ function sendVerse(id) {
         .then(function(json) {
             var quote = '\"' + json[0].text.replace(/&#8211;/g,'').replace(/['"]+/g, '') + '\"';
             setTimeout(function () {
-                sendTextMessage(recipientId, quote);
+                sendTextMessage(id, quote);
                 setTimeout(function () {
                     var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more ;) )';
-                    sendTextMessage(recipientId, caption);
+                    sendTextMessage(id, caption);
                 }, 100);
             }, 2000);
         })
         .catch(function(err) {
-            sendTextMessage(recipientId, 'Revelation 22:13');
-            sendTextMessage(recipientId, 'I am Alpha and Omega, the beginning and the end, the first and the last.');
+            sendTextMessage(id, 'Revelation 22:13');
+            sendTextMessage(id, 'I am Alpha and Omega, the beginning and the end, the first and the last.');
         });
 }
 
@@ -451,11 +451,11 @@ function callSendAPI(messageData) {
         json: messageData
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            var recipientId = body.recipient_id;
+            var id = body.recipient_id;
             var messageId = body.message_id;
 
             console.log("Successfully sent generic message with id %s to recipient %s",
-                messageId, recipientId);
+                messageId, id);
         } else {
             console.error("Unable to send message.");
             console.error(response);
