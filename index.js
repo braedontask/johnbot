@@ -175,7 +175,14 @@ function sendFeeling(recipientId) {
     'bad like the Whore of Babylon.'];
     var m = feelings[Math.floor(Math.random() * feelings.length)];
     sendTextMessage(recipientId, m);
-    sendButton(recipientId, 'But why John, why do you feel this way?', 'But why John, why do you feel this way?');
+    var answer = ['Don\'t prompt me for my inner feelings! That\'s such a God thing to do...', 'Hey, if you just saw ' +
+    'all Hell break loose and a sea of blood how would you feel?', 'Forget about winter is coming--the final three ' +
+    'angels are coming...it\'s gonna go from O:) to 3:) real fast...', 'Did you just spend your Saturday night ' +
+    'tripping visions of the end of the world? I think not.', 'I\'ll tell you if you tell me why God has a weird ' +
+    '(^^^) sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...She\'s ' +
+    'basically like the Kardashians--people we love to hate (dw God told me all about the future...)'];
+    var m1 = answer[Math.floor(Math.random() * answer.length)];
+    sendButton(recipientId, 'But why John?', m1);
 }
 
 function loading(recipientId) {
@@ -305,10 +312,7 @@ function sendButton(recipientId, title, payload) {
                 payload: {
                     template_type: "generic",
                     elements: [{
-                        title: "Prompt John",
-                        //subtitle: "Next-generation virtual reality",
-                        //item_url: "https://www.oculus.com/en-us/rift/",
-                        //image_url: "http://messengerdemo.parseapp.com/img/rift.png",
+                        title: "Pssst...prompt John for more",
                         buttons: [{
                             type: "postback",
                             title: title,
