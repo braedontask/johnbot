@@ -105,6 +105,8 @@ function generateAnd(lst, query) {
 function routeRequests(m, id) {
     if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
+    } else if (generateOr(['feel', 'how are you', 'how do you feel'], m)) {
+        sendFeeling(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
@@ -129,7 +131,7 @@ function receivedPostback(event) {
         "at %d", senderID, recipientID, payload, timeOfPostback);
 
     // confirmation of postback
-    sendTextMessage(senderID, "Postback called");
+    sendTextMessage(senderID, payload);
 }
 
 // sending helpers
@@ -155,9 +157,25 @@ function sendGreeting(recipientId) {
     'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'Hello! It\'s ' +
     'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
     'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
-    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.'];
+    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Hi! Here\'s some ' +
+    'sunglasses 8| jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
+    'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
+    'hot today here on Patmos...maybe even hotter than that lake of fire.', 'Here\'s a pacman symbol just because ' +
+    ':v (even though it hasn\'t been invented yet God showed me...we in 1980 baby!)'];
     var m = greetings[Math.floor(Math.random() * greetings.length)];
     sendTextMessage(recipientId, m);
+}
+
+function sendFeeling(recipientId) {
+    var feelings = ['Good...but not great.', 'Meh :P God\'s playing games with my mind again', 'I\'m not the Alpha ' +
+    'and Omega...how would I know?', 'Nah, the real question is: how are YOU o.O?', 'Could be better...if I wasn\'t ' +
+    'stuck on an island by myself.', 'How am I is relative. Relative to you, to the pagans, to my other apostle ' +
+    'homies. Hey, even though I\'m not always as philosophical as Paul, I have my moments, okay?', 'I mean, it could ' +
+    'be better but at least I\'m not running-through-the-wilderness-as-a-very-naughty-dragon-summons-a-flood-to-kill-me ' +
+    'bad like the Whore of Babylon.'];
+    var m = feelings[Math.floor(Math.random() * feelings.length)];
+    sendTextMessage(recipientId, m);
+    sendButton(recipientId, 'But why John, why do you feel this way?', 'But why John, why do you feel this way?');
 }
 
 function loading(recipientId) {
@@ -276,7 +294,7 @@ function sendErrorMessage(recipientId) {
     sendTextMessage(recipientId, text);
 }
 
-function sendGenericMessage(recipientId) {
+function sendButton(recipientId, title, payload) {
     var messageData = {
         recipient: {
             id: recipientId
@@ -287,32 +305,10 @@ function sendGenericMessage(recipientId) {
                 payload: {
                     template_type: "generic",
                     elements: [{
-                        title: "rift",
-                        subtitle: "Next-generation virtual reality",
-                        item_url: "https://www.oculus.com/en-us/rift/",
-                        image_url: "http://messengerdemo.parseapp.com/img/rift.png",
                         buttons: [{
-                            type: "web_url",
-                            url: "https://www.oculus.com/en-us/rift/",
-                            title: "Open Web URL"
-                        }, {
                             type: "postback",
-                            title: "Call Postback",
-                            payload: "Payload for first bubble",
-                        }]
-                    }, {
-                        title: "touch",
-                        subtitle: "Your Hands, Now in VR",
-                        item_url: "https://www.oculus.com/en-us/touch/",
-                        image_url: "http://messengerdemo.parseapp.com/img/touch.png",
-                        buttons: [{
-                            type: "web_url",
-                            url: "https://www.oculus.com/en-us/touch/",
-                            title: "Open Web URL"
-                        }, {
-                            type: "postback",
-                            title: "Call Postback",
-                            payload: "Payload for second bubble",
+                            title: title,
+                            payload: payload
                         }]
                     }]
                 }
