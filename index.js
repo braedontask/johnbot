@@ -152,8 +152,10 @@ function sendGreeting(recipientId) {
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
     'tell you that. Literally just watch birds fly over me and those pagans offshore have fun while I sit and ' +
-    'try to remember the name of that weirdo from Rome who kept stalking me before I was banished.', 'Hello! It\'s ' +
-    'a beautiful day out here in Patmos...said no one ever :|'];
+    'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'Hello! It\'s ' +
+    'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
+    'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
+    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.'];
     var m = greetings[Math.floor(Math.random() * greetings.length)];
     sendTextMessage(recipientId, m);
 }
