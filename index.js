@@ -113,7 +113,7 @@ function routeRequests(msg, id) {
         sendHeaven(id);
     } else if (generateAnd(['how', 'hell'], m) || (generateAnd(['what', 'hell'], m))) {
         sendHell(id);
-    } else if (generateAnd(['who', 'today'], m) || generateAnd(['who', 'see']), m) {
+    } else if (generateAnd(['who', 'today'], m) || generateAnd(['who', 'see'], m)) {
         sendToday(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
@@ -187,7 +187,7 @@ function sendFeeling(recipientId) {
     'all Hell break loose and a sea of blood how would you feel?', 'Forget about winter is coming--the final three ' +
     'angels are coming...it\'s gonna go from O:) to 3:) real fast...', 'Did you just spend your Saturday night ' +
     'tripping visions of the end of the world? I think not.', 'I\'ll tell you if you tell me why God has a weird ' +
-    '(^^^) sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...', 'Eh. ' +
+    ':P sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...', 'Eh. ' +
     'I\'m in one of those less-talking-more-writing-random-stuff moods.'];
     var m1 = answer[Math.floor(Math.random() * answer.length)];
     sendButton(recipientId, 'But why John?', m1);
@@ -268,7 +268,8 @@ function sendToday(recipientId) {
     'man! Samson was even more massive in person than I thought. Still laugh at him every time I see him though ' +
     'for falling prey to Delilah >:O', 'Does David ever NOT have his harp with him? He\'s honestly not THAT good...' +
     'I\'d honestly rather fall asleep to the shouts of all those Israelites marching around Jericho with Joshua than ' +
-    'David...', 'Daniel was straight out chilling the other day with a lion. So jelly of him. What\'s next? Sharks? (^^^)',
+    'David...', 'Daniel was straight out chilling the other day with a lion. So jelly of him. What\'s next? Dragons? ' +
+    'If he could sit down and not be annoyed with the pagans for more than 10 seconds I\'d be even more impressed...',
     'Had some wine with Samson the other day...straight up could not finish a tenth of what he did before he even started ' +
     'eating. Major props <3', 'Peter and Paul are STILL arguing over what they should have done for the budding Christian ' +
     'community. I\'m just glad Paul won out on circumsion >:('];
