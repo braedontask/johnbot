@@ -93,7 +93,7 @@ function generateOr(lst, query) {
 
 function generateAnd(lst, query) {
     for (var i = 0; i < lst.length; i++) {
-        if (!generate(lst[i]).test(query)) {
+        if (!generate(lst[i]).test(query.toLowerCase())) {
             return false;
         }
     }
@@ -107,8 +107,10 @@ function routeRequests(m, id) {
         sendGreeting(id);
     } else if (generateOr(['feel', 'how are you', 'how do you feel', 'feeling'], m)) {
         sendFeeling(id);
-    } else if (generateAnd(['how', 'Heaven'], m)) {
+    } else if (generateAnd(['how', 'heaven'], m) || (generateAnd(['what', 'heaven'], m))) {
         sendHeaven(id);
+    } else if (generateAnd(['how', 'hell'], m) || (generateAnd(['what', 'hell'], m))) {
+        sendHell(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
@@ -191,7 +193,7 @@ function sendHeaven(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
     var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
     var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
-    '(1541)', 'The Assumption of the Virgin, Antonio da Correggio (1530)', 'The Apotheosis of Saint Ignatius, Baciccio ' +
+    '(1541)', 'The Assumption of the Virgin, Antonio Correggio (1530)', 'The Apotheosis of St. Ignatius, Baciccio ' +
     '(1685)'];
     var urls = ['https://cdn.theconversation.com/files/80385/area14mp/image-20150505-8434-1kfv6q7.jpg',
                 'https://cdn.theconversation.com/files/80382/area14mp/image-20150505-8415-1mwaj43.jpg',
@@ -201,6 +203,24 @@ function sendHeaven(recipientId) {
                     'https://www.khanacademy.org/humanities/renaissance-reformation/high-ren-florence-rome/michelangelo/a/michelangelo-last-judgment',
                     'https://en.wikipedia.org/wiki/Assumption_of_the_Virgin_(Correggio)',
                     'http://www.wga.hu/html_m/b/baciccio/apotheos.html'];
+    generatePictures(recipientId, titles, subtitles, urls, learns);
+}
+
+function sendHell(recipientId) {
+    sendTextMessage(recipientId, 'Check out these swag pictures.');
+    var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
+                    'Enough. Said.', 'Also there are pretty clouds...', 'Dinner is served in hot pot...'];
+    var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
+                    'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
+                    'The Last Judgment, Fra Angelico (1430)'];
+    var urls = ['https://en.wikipedia.org/wiki/The_Great_Red_Dragon_Paintings#/media/File:Blakebeast1bg.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/a/a5/Matthias_Gr%C3%BCnewald_-_The_Temptation_of_St_Anthony_-_WGA10765.jpg',
+        'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights#/media/File:El_jard%C3%ADn_de_las_Delicias,_de_El_Bosco.jpg',
+        'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
+    var learns = ['https://en.wikipedia.org/wiki/The_Great_Red_Dragon_Paintings',
+        'https://en.wikipedia.org/wiki/Isenheim_Altarpiece',
+        'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights',
+        'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
     generatePictures(recipientId, titles, subtitles, urls, learns);
 }
 
