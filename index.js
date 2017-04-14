@@ -241,13 +241,13 @@ function sendVerse(recipientId) {
             return res.json();
         })
         .then(function(json) {
-            var quote = '\"' + json[0].text.replace(/&#8211;/g,'') + '\"';
+            var quote = '\"' + json[0].text.replace(/&#8211;/g,'').replace(/['"]+/g, '') + '\"';
             setTimeout(function () {
                 sendTextMessage(recipientId, quote);
                 setTimeout(function () {
                     var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
                     sendTextMessage(recipientId, caption);
-                }, 0);
+                }, 100);
             }, 2000);
         })
         .catch(function(err) {
