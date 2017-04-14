@@ -107,7 +107,7 @@ function routeRequests(msg, id) {
     var m = msg.toLowerCase();
     if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
-    } else if (generateOr(['feel', 'how are you', 'how do you feel', 'feeling'], m)) {
+    } else if (generateOr(['feel', 'how are you', 'feeling'], m)) {
         sendFeeling(id);
     } else if (generateAnd(['how', 'heaven'], m) || (generateAnd(['what', 'heaven'], m))) {
         sendHeaven(id);
@@ -115,8 +115,10 @@ function routeRequests(msg, id) {
         sendHell(id);
     } else if (generateAnd(['who', 'today'], m) || generateAnd(['who', 'see'], m)) {
         sendToday(id);
-    } else if (generateOr(['who', 'name'], m)) {
-        sendTextMessage(id, "My name is John. Thanks for asking!")
+    } else if (generateOr(['who are you', 'name'], m)) {
+        sendName(id);
+    } else if (generateOr(['about', 'bio'], m) || generateAnd(['tell', 'more'], m)) {
+        sendAbout(id);
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
         sendTextMessage(id, "I wrote the Book of Revelation around 95 CE.")
     } else if (generateOr(['verse', 'read', 'text'], m)) {
@@ -166,7 +168,7 @@ function sendGreeting(recipientId) {
     'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
     'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
     'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Hi! Here\'s some ' +
-    'sunglasses 8| jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
+    'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
     'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
     'hot today here on Patmos...maybe even hotter than that lake of fire.', 'Here\'s a pacman symbol just because ' +
     ':v (even though it hasn\'t been invented yet God showed me...we in 1980 baby!)'];
@@ -195,38 +197,36 @@ function sendFeeling(recipientId) {
 
 function sendHeaven(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
-    loading(recipientId);
     var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
     var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
     '(1541)', 'The Assumption of the Virgin, Antonio Correggio (1530)', 'The Apotheosis of St. Ignatius, Baciccio ' +
     '(1685)'];
     var urls = ['https://cdn.theconversation.com/files/80385/area14mp/image-20150505-8434-1kfv6q7.jpg',
-                'https://cdn.theconversation.com/files/80382/area14mp/image-20150505-8415-1mwaj43.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/e/e1/Correggio%2C_Assumption_of_the_Virgin%2C_Duomo%2C_Parma_01.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/10/Baciccio_-_Apotheosis_of_St_Ignatius_-_WGA01110.jpg'];
+    'https://cdn.theconversation.com/files/80382/area14mp/image-20150505-8415-1mwaj43.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/e/e1/Correggio%2C_Assumption_of_the_Virgin%2C_Duomo%2C_Parma_01.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/1/10/Baciccio_-_Apotheosis_of_St_Ignatius_-_WGA01110.jpg'];
     var learns = ['http://www.nationalgallery.org.uk/paintings/francesco-botticini-the-assumption-of-the-virgin',
-                    'https://www.khanacademy.org/humanities/renaissance-reformation/high-ren-florence-rome/michelangelo/a/michelangelo-last-judgment',
-                    'https://en.wikipedia.org/wiki/Assumption_of_the_Virgin_(Correggio)',
-                    'http://www.wga.hu/html_m/b/baciccio/apotheos.html'];
+    'https://www.khanacademy.org/humanities/renaissance-reformation/high-ren-florence-rome/michelangelo/a/michelangelo-last-judgment',
+    'https://en.wikipedia.org/wiki/Assumption_of_the_Virgin_(Correggio)',
+    'http://www.wga.hu/html_m/b/baciccio/apotheos.html'];
     generatePictures(recipientId, titles, subtitles, urls, learns);
 }
 
 function sendHell(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
-    loading(recipientId);
     var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
-                    'Enough. Said.', 'Dinner is served a la hot pot...'];
+    'Enough. Said.', 'Dinner is served a la hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
-                    'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
-                    'The Last Judgment, Fra Angelico (1430)'];
+    'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
+    'The Last Judgment, Fra Angelico (1430)'];
     var urls = ['https://uploads0.wikiart.org/images/william-blake/the-great-red-dragon-and-the-beast-from-the-sea-1805.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/a/a5/Matthias_Gr%C3%BCnewald_-_The_Temptation_of_St_Anthony_-_WGA10765.jpg',
-        'https://ka-perseus-images.s3.amazonaws.com/6c7a29177325fc57f574dbbeb6f079126d6d0de5.jpg',
-        'https://s-media-cache-ak0.pinimg.com/originals/30/b0/f3/30b0f3a39bfcb31c2b8dc18da0c27574.jpg'];
+    'https://upload.wikimedia.org/wikipedia/commons/a/a5/Matthias_Gr%C3%BCnewald_-_The_Temptation_of_St_Anthony_-_WGA10765.jpg',
+    'https://ka-perseus-images.s3.amazonaws.com/6c7a29177325fc57f574dbbeb6f079126d6d0de5.jpg',
+    'https://s-media-cache-ak0.pinimg.com/originals/30/b0/f3/30b0f3a39bfcb31c2b8dc18da0c27574.jpg'];
     var learns = ['https://en.wikipedia.org/wiki/The_Great_Red_Dragon_Paintings',
-        'https://en.wikipedia.org/wiki/Isenheim_Altarpiece',
-        'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights',
-        'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
+    'https://en.wikipedia.org/wiki/Isenheim_Altarpiece',
+    'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights',
+    'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
     generatePictures(recipientId, titles, subtitles, urls, learns);
 }
 
@@ -263,7 +263,7 @@ function generatePictures(recipientId, titles, subtitles, urls, learns) {
     callSendAPI(messageData);
 }
 
-function sendToday(recipientId) {
+function sendToday(id) {
     var msgs = ['I saw Cain and Abel the other day...still going at it as always. When will Cain ever learn?', 'Oh ' +
     'man! Samson was even more massive in person than I thought. Still laugh at him every time I see him though ' +
     'for falling prey to Delilah >:O', 'Does David ever NOT have his harp with him? He\'s honestly not THAT good...' +
@@ -274,13 +274,35 @@ function sendToday(recipientId) {
     'eating. Major props <3', 'Peter and Paul are STILL arguing over what they should have done for the budding Christian ' +
     'community. I\'m just glad Paul won out on circumsion >:('];
     var m = msgs[Math.floor(Math.random() * msgs.length)];
-    sendTextMessage(recipientId, m);
+    sendTextMessage(id, m);
 }
 
-function loading(recipientId) {
+function sendName(id) {
+    sendTextMessage(id, 'Well, you know it\'s hard to really say. I like to go by John but there\'s such a mystery ' +
+    'around my identity in popular culture that I derive such pleasure from trolling people and keeping it that way. But I\'ll spare ' +
+    'you some pain and give you some information that may or may not be completely accurate :P');
+    sendTextMessage(id, 'Here are some portraits of me. Not super accurate but I\'ll leave the rest of the gaps ' +
+        'to your imagination :P');
+    var titles = ['My beautiful face', 'Yeah, Jesus and I are tight...', 'Always up for some fine wine ladies ;)'];
+    var subtitles = ['St. John the Evangelist, Domenico Zampieri (1623)', 'The Last Supper, Anonymous (1650)',
+    'St. John the Apostle, Peter Paul Rubens (1611)'];
+    var urls = ['https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Zampieri_St_John_Evangelist.jpg/1280px-Zampieri_St_John_Evangelist.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/2/2e/An%C3%B4nimo_-_A_%C3%9Altima_Ceia.jpg',
+    'http://www.artbible.info/images/rubens_apostel_johannes_grt.jpg'];
+    var learns = ['https://en.wikipedia.org/wiki/John_the_Apostle', 'https://en.wikipedia.org/wiki/John_the_Apostle',
+    'https://en.wikipedia.org/wiki/John_the_Apostle'];
+    generatePictures(recipientId, titles, subtitles, urls, learns);
+}
+
+function sendAbout(id) {
+    sendTextMessage(id, 'I\'m sorry if this is long-winded but my life is pretty cool not gonna lie. I mean, ' +
+    'based on the lengthy syntax and elaborate imagery in Revelation, what else would you expect? (y)');
+}
+
+function loading(id) {
     var messageData = {
         recipient: {
-            id: recipientId
+            id: id
         },
         sender_action: 'typing_on'
     };
@@ -289,8 +311,8 @@ function loading(recipientId) {
     callSendAPI(messageData);
 }
 
-function sendVerse(recipientId) {
-    loading(recipientId);
+function sendVerse(id) {
+    loading(id);
     var base = 'http://labs.bible.org/api/?passage=Revelation%20';
     var chapter = (Math.floor(Math.random() * 22) + 1).toString();
     var max;
@@ -375,7 +397,7 @@ function sendVerse(recipientId) {
             setTimeout(function () {
                 sendTextMessage(recipientId, quote);
                 setTimeout(function () {
-                    var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more trippy stuff ;) )';
+                    var caption = 'Revelation ' + chapter + ':' + verse + ' (hmu for more ;) )';
                     sendTextMessage(recipientId, caption);
                 }, 100);
             }, 2000);
@@ -386,17 +408,17 @@ function sendVerse(recipientId) {
         });
 }
 
-function sendErrorMessage(recipientId) {
+function sendErrorMessage(id) {
     var site = 'https://boiling-retreat-40010.herokuapp.com/';
     var text = 'Oh no! I didn\'t understand your message. I\'m not Alpha and the Omega, the beginning and the ' +
             'end (blah blah blah) by the way. Check out ' + site + ' for some things I can talk to you about.';
-    sendTextMessage(recipientId, text);
+    sendTextMessage(id, text);
 }
 
-function sendButton(recipientId, title, payload) {
+function sendButton(id, title, payload) {
     var messageData = {
         recipient: {
-            id: recipientId
+            id: id
         },
         message: {
             attachment: {
