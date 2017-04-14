@@ -113,6 +113,8 @@ function routeRequests(msg, id) {
         sendHeaven(id);
     } else if (generateAnd(['how', 'hell'], m) || (generateAnd(['what', 'hell'], m))) {
         sendHell(id);
+    } else if (generateAnd(['who', 'today'])) {
+        sendToday(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
@@ -193,6 +195,7 @@ function sendFeeling(recipientId) {
 
 function sendHeaven(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
+    loading(recipientId);
     var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
     var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
     '(1541)', 'The Assumption of the Virgin, Antonio Correggio (1530)', 'The Apotheosis of St. Ignatius, Baciccio ' +
@@ -210,6 +213,7 @@ function sendHeaven(recipientId) {
 
 function sendHell(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
+    loading(recipientId);
     var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
                     'Enough. Said.', 'Dinner is served a la hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
@@ -257,6 +261,19 @@ function generatePictures(recipientId, titles, subtitles, urls, learns) {
 
     // make POST call
     callSendAPI(messageData);
+}
+
+function sendToday(recipientId) {
+    var msgs = ['I saw Cain and Abel the other day...still going at it as always. When will Cain ever learn?', 'Oh ' +
+    'man! Samson was even more massive in person than I thought. Still laugh at him every time I see him though ' +
+    'for falling prey to Delilah >:O', 'Does David ever NOT have his harp with him? He\'s honestly not THAT good...' +
+    'I\'d honestly rather fall asleep to the shouts of all those Israelites marching around Jericho with Joshua than ' +
+    'David...', 'Daniel was straight out chilling the other day with a lion. So jelly of him. What\'s next? Sharks? (^^^)',
+    'Had some wine with Samson the other day...straight up could not finish a tenth of what he did before he even started ' +
+    'eating. Major props <3', 'Peter and Paul are STILL arguing over what they should have done for the budding Christian ' +
+    'community. I\'m just glad Paul won out on circumsion >:('];
+    var m = msgs[Math.floor(Math.random() * msgs.length)];
+    sendTextMessage(recipientId, m);
 }
 
 function loading(recipientId) {
