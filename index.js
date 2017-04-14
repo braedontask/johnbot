@@ -214,10 +214,10 @@ function sendHell(recipientId) {
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
                     'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
                     'The Last Judgment, Fra Angelico (1430)'];
-    var urls = ['https://en.wikipedia.org/wiki/The_Great_Red_Dragon_Paintings#/media/File:Blakebeast1bg.jpg',
+    var urls = ['https://uploads0.wikiart.org/images/william-blake/the-great-red-dragon-and-the-beast-from-the-sea-1805.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/a/a5/Matthias_Gr%C3%BCnewald_-_The_Temptation_of_St_Anthony_-_WGA10765.jpg',
-        'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights#/media/File:El_jard%C3%ADn_de_las_Delicias,_de_El_Bosco.jpg',
-        'https://en.wikipedia.org/wiki/The_Last_Judgment_(Fra_Angelico,_Florence)'];
+        'https://ka-perseus-images.s3.amazonaws.com/6c7a29177325fc57f574dbbeb6f079126d6d0de5.jpg',
+        'https://s-media-cache-ak0.pinimg.com/originals/30/b0/f3/30b0f3a39bfcb31c2b8dc18da0c27574.jpg'];
     var learns = ['https://en.wikipedia.org/wiki/The_Great_Red_Dragon_Paintings',
         'https://en.wikipedia.org/wiki/Isenheim_Altarpiece',
         'https://en.wikipedia.org/wiki/The_Garden_of_Earthly_Delights',
