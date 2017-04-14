@@ -113,7 +113,7 @@ function routeRequests(msg, id) {
         sendHeaven(id);
     } else if (generateAnd(['how', 'hell'], m) || (generateAnd(['what', 'hell'], m))) {
         sendHell(id);
-    } else if (generateAnd(['who', 'today'])) {
+    } else if (generateAnd(['who', 'today'], m) || generateAnd(['who', 'see']), m) {
         sendToday(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
