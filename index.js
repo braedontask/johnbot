@@ -105,8 +105,10 @@ function generateAnd(lst, query) {
 function routeRequests(m, id) {
     if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
-    } else if (generateOr(['feel', 'how are you', 'how do you feel'], m)) {
+    } else if (generateOr(['feel', 'how are you', 'how do you feel', 'feeling'], m)) {
         sendFeeling(id);
+    } else if (generateAnd(['how', 'Heaven'], m)) {
+        sendHeaven(id);
     } else if (generateOr(['who', 'name'], m)) {
         sendTextMessage(id, "My name is John. Thanks for asking!")
     } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
@@ -179,10 +181,52 @@ function sendFeeling(recipientId) {
     'all Hell break loose and a sea of blood how would you feel?', 'Forget about winter is coming--the final three ' +
     'angels are coming...it\'s gonna go from O:) to 3:) real fast...', 'Did you just spend your Saturday night ' +
     'tripping visions of the end of the world? I think not.', 'I\'ll tell you if you tell me why God has a weird ' +
-    '(^^^) sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...She\'s ' +
-    'basically like the Kardashians--people we love to hate (dw God told me all about the future...)'];
+    '(^^^) sign next to your name in the Book of Life...', 'Unlike you, I feel for the Whore of Babylon...', 'Eh. ' +
+    'I\'m in one of those less-talking-more-writing-random-stuff moods.'];
     var m1 = answer[Math.floor(Math.random() * answer.length)];
     sendButton(recipientId, 'But why John?', m1);
+}
+
+function sendHeaven(recipientId) {
+    sendTextMessage(recipientId, 'Check out these swag pictures.');
+    var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
+    var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
+    '(1541)', 'The Assumption of the Virgin, Antonio da Correggio (1530)', 'The Apotheosis of Saint Ignatius, Baciccio ' +
+    '(1685)'];
+    var urls = ['https://cdn.theconversation.com/files/80385/area14mp/image-20150505-8434-1kfv6q7.jpg',
+                'https://cdn.theconversation.com/files/80382/area14mp/image-20150505-8415-1mwaj43.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/e/e1/Correggio%2C_Assumption_of_the_Virgin%2C_Duomo%2C_Parma_01.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/10/Baciccio_-_Apotheosis_of_St_Ignatius_-_WGA01110.jpg'];
+    generatePictures(recipientId, titles, subtitles, urls);
+}
+
+function generatePictures(recipientId, titles, subtitles, urls) {
+    var elements = [];
+    for (var i = 0; i < titles.length; i++) {
+        elements.push({
+            title: titles[i],
+            subtitle: subtitles[i],
+            image_url: urls[i],
+            buttons: []
+        });
+    }
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: elements
+                }
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
 }
 
 function loading(recipientId) {
