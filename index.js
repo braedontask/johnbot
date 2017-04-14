@@ -94,7 +94,7 @@ function generateOr(lst, query) {
 
 function generateAnd(lst, query) {
     for (var i = 0; i < lst.length; i++) {
-        if (!generate(lst[i]).test(query.toLowerCase())) {
+        if (!generate(lst[i]).test(query)) {
             return false;
         }
     }
@@ -103,7 +103,8 @@ function generateAnd(lst, query) {
     return true;
 }
 
-function routeRequests(m, id) {
+function routeRequests(msg, id) {
+    var m = msg.toLowerCase();
     if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
     } else if (generateOr(['feel', 'how are you', 'how do you feel', 'feeling'], m)) {
@@ -210,7 +211,7 @@ function sendHeaven(recipientId) {
 function sendHell(recipientId) {
     sendTextMessage(recipientId, 'Check out these swag pictures.');
     var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
-                    'Enough. Said.', 'Dinner is served in hot pot...'];
+                    'Enough. Said.', 'Dinner is served a la hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
                     'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
                     'The Last Judgment, Fra Angelico (1430)'];
