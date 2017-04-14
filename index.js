@@ -197,17 +197,25 @@ function sendHeaven(recipientId) {
                 'https://cdn.theconversation.com/files/80382/area14mp/image-20150505-8415-1mwaj43.jpg',
                 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Correggio%2C_Assumption_of_the_Virgin%2C_Duomo%2C_Parma_01.jpg',
                 'https://upload.wikimedia.org/wikipedia/commons/1/10/Baciccio_-_Apotheosis_of_St_Ignatius_-_WGA01110.jpg'];
-    generatePictures(recipientId, titles, subtitles, urls);
+    var learns = ['http://www.nationalgallery.org.uk/paintings/francesco-botticini-the-assumption-of-the-virgin',
+                    'https://www.khanacademy.org/humanities/renaissance-reformation/high-ren-florence-rome/michelangelo/a/michelangelo-last-judgment',
+                    'https://en.wikipedia.org/wiki/Assumption_of_the_Virgin_(Correggio)',
+                    'http://www.wga.hu/html_m/b/baciccio/apotheos.html'];
+    generatePictures(recipientId, titles, subtitles, urls, learns);
 }
 
-function generatePictures(recipientId, titles, subtitles, urls) {
+function generatePictures(recipientId, titles, subtitles, urls, learns) {
     var elements = [];
     for (var i = 0; i < titles.length; i++) {
         elements.push({
             title: titles[i],
             subtitle: subtitles[i],
             image_url: urls[i],
-            buttons: []
+            buttons: [{
+                type: "web_url",
+                url: learns[i],
+                title: "Learn More"
+            }]
         });
     }
     var messageData = {
