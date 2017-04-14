@@ -168,14 +168,14 @@ function sendGreeting(recipientId) {
 
 function sendFeeling(recipientId) {
     var feelings = ['Good...but not great.', 'Meh :P God\'s playing games with my mind again', 'I\'m not the Alpha ' +
-    'and Omega...how would I know?', 'Nah, the real question is: how are YOU o.O?', 'Could be better...if I wasn\'t ' +
+    'and Omega...how would I know?', 'Nah, the real question is: how are YOU?', 'Could be better...if I wasn\'t ' +
     'stuck on an island by myself.', 'How am I is relative. Relative to you, to the pagans, to my other apostle ' +
     'homies. Hey, even though I\'m not always as philosophical as Paul, I have my moments, okay?', 'I mean, it could ' +
     'be better but at least I\'m not running-through-the-wilderness-as-a-very-naughty-dragon-summons-a-flood-to-kill-me ' +
     'bad like the Whore of Babylon.'];
     var m = feelings[Math.floor(Math.random() * feelings.length)];
     sendTextMessage(recipientId, m);
-    sendButton(recipientId, 'But why John, why do you feel this way?', 'But why John, why do you feel this way?');
+    sendGenericMessage(recipientId);
 }
 
 function loading(recipientId) {
@@ -294,7 +294,7 @@ function sendErrorMessage(recipientId) {
     sendTextMessage(recipientId, text);
 }
 
-function sendButton(recipientId, title, payload) {
+function sendGenericMessage(recipientId) {
     var messageData = {
         recipient: {
             id: recipientId
@@ -305,10 +305,32 @@ function sendButton(recipientId, title, payload) {
                 payload: {
                     template_type: "generic",
                     elements: [{
+                        title: "rift",
+                        subtitle: "Next-generation virtual reality",
+                        item_url: "https://www.oculus.com/en-us/rift/",
+                        image_url: "http://messengerdemo.parseapp.com/img/rift.png",
                         buttons: [{
+                            type: "web_url",
+                            url: "https://www.oculus.com/en-us/rift/",
+                            title: "Open Web URL"
+                        }, {
                             type: "postback",
-                            title: title,
-                            payload: payload
+                            title: "Call Postback",
+                            payload: "Payload for first bubble",
+                        }]
+                    }, {
+                        title: "touch",
+                        subtitle: "Your Hands, Now in VR",
+                        item_url: "https://www.oculus.com/en-us/touch/",
+                        image_url: "http://messengerdemo.parseapp.com/img/touch.png",
+                        buttons: [{
+                            type: "web_url",
+                            url: "https://www.oculus.com/en-us/touch/",
+                            title: "Open Web URL"
+                        }, {
+                            type: "postback",
+                            title: "Call Postback",
+                            payload: "Payload for second bubble",
                         }]
                     }]
                 }
