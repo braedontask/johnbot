@@ -132,6 +132,8 @@ function routeRequests(msg, id) {
         sendJoke(id);
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
+    } else if (generateOr(['Question1--'], m)) {
+        sendTextMessage(id, 'received from normal text');
     } else {
         sendErrorMessage(id);
     }
@@ -152,6 +154,8 @@ function receivedPostback(event) {
     // confirmation of postback
     if (payload.includes('http') || payload.includes('./')) {
         sendFile(senderID, payload);
+    } else if (payload.includes('Question1--')) {
+        sendTextMessage(senderID, 'received from postback');
     } else {
         sendTextMessage(senderID, payload);
     }
