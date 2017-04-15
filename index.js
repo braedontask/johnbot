@@ -160,7 +160,7 @@ function getUserInfo(id) {
         qs: { access_token: config.access_token },
         method: 'GET'
     }, function (error, response, body) {
-        return JSON.parse(response);
+        return response;
     });
 }
 
