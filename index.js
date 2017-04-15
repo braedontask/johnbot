@@ -141,10 +141,10 @@ function receivedPostback(event) {
         "at %d", senderID, id, payload, timeOfPostback);
 
     // confirmation of postback
-    if (payload.type === 'text') {
+    if (!payload.includes('http')) {
         sendTextMessage(senderID, payload);
     } else {
-        sendFile(senderID, payload.content);
+        sendFile(senderID, payload);
     }
 }
 
@@ -444,7 +444,7 @@ function sendButton(id, title, payload) {
                         buttons: [{
                             type: "postback",
                             title: title,
-                            payload: {type: 'text', content: payload}
+                            payload: payload
                         }]
                     }]
                 }
@@ -493,7 +493,7 @@ function sendFile(id, file) {
         message: {
             attachment: {
                 type: "file",
-                payload: {url: file}
+                payload: file
             }
         }
     };
