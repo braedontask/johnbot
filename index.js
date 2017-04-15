@@ -168,6 +168,8 @@ function sendTextMessage(id, m) {
 function sendTextMessages(id, ms) {
     for (var i = 0; i < ms.length; i++) {
         sendTextMessage(id, ms[i]);
+        loading(id);
+        setTimeout(function() {}, 500);
     }
 }
 
