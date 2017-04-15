@@ -107,7 +107,7 @@ function routeRequests(msg, id) {
     var m = msg.toLowerCase();
     if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
-    } else if (generateOr(['feel', 'how are you', 'feeling'], m)) {
+    } else if (generateOr(['feel', 'how are you', 'feeling', 'how r u'], m)) {
         sendFeeling(id);
     } else if (generateAnd(['how', 'heaven'], m) || (generateAnd(['what', 'heaven'], m))) {
         sendHeaven(id);
@@ -125,6 +125,8 @@ function routeRequests(msg, id) {
         sendLocation(id);
     } else if (generateOr(['verse', 'read', 'text'], m)) {
         sendVerse(id);
+    } else if (generateOr(['joke', 'laugh'], m)) {
+        sendJoke(id);
     } else {
         sendErrorMessage(id);
     }
@@ -326,13 +328,12 @@ function sendWhen(id) {
 }
 
 function sendLocation(id) {
-    sendTextMessage(id, '(1/2) Where was I when I wrote Revelation you ask? Well if you haven\'t been able to tell from ' +
+    sendTextMessage(id, 'Where was I when I wrote Revelation you ask? Well if you haven\'t been able to tell from ' +
     'my salty messages by now, I\'ve been stuck on this stupid island Patmos (in current day Greece) for what seems ' +
     'like FOREVER :( The Romans banished me here as punishment for my belief in Jesus. Something about Christianity ' +
     'posing a subversive threat blah blah blah to the Roman order. I guess we\'re seen as an alternative order and \"deep ' +
-    'state\" to the Romans since we refuse to worship the obviously unholy emperor.');
-    sendTextMessage(id, '(2/2) Just drive my point home, Patmos SUCKS. There\'s absolutely no one here, just a bunch of water, ' +
-    'super loud birds, and these many visions from God which scare the crap out of me. See for yourself:');
+    'state\" to the Romans since we refuse to worship the obviously unholy emperor. Just drive my point home, Patmos ' +
+    'SUCKS. There\'s absolutely no one here, just a bunch of water and super loud birds. See for yourself:');
     sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=10&scale=false&size=' +
     '1000x1000&maptype=roadmap&format=png&visual_refresh=true');
 }
@@ -444,6 +445,27 @@ function sendVerse(id) {
             sendTextMessage(id, 'Revelation 22:13');
             sendTextMessage(id, 'I am Alpha and Omega, the beginning and the end, the first and the last.');
         });
+}
+
+function sendJoke(id) {
+    var jokes = ['What\'s worst than burning to death in Hell?', 'Why did the Whore of Babylon cross the road?', 'If ' +
+    '2 is better than 1, what is better than 7?', 'What did the Great Red Dragon say to the Whore of Babylon?',
+    'Why did God put on sunglasses?', 'Why do I criticize the Laodiceans?', 'What did I say to Pergamos outside of ' +
+    'Revelation?', 'Who are these famed Nicolaitans that I hate so much?'];
+    var answers = ['Burning alive in Patmos. Literally. The. Worst.', 'She saw a path of gold and thought she was in Heaven. ' +
+    'But PSYCH. She ain\'t ever going to Heaven mwahaha >:)', 'Nothing. Trick question. 7 is literally my fave number.',
+    'It\'s about to get lit in here.', 'Because Hell is about to light you up in that infinite sea of fire B-)',
+    'Because they are Lao-sy in their obedience toward God\'s commandments (smh they more lukewarm than all this ' +
+    'slightly suspicious warm water around me).', 'Stop being so Per-ky with your idols (hehe)...it\'s fine though ' +
+    'they hate the Nicolaitans so we all chill.', 'While scholars think the Nicolaitans were a group worshipping idols ' +
+    'similar to Balaam, in reality they\'re just a SUPER annoying gaggle of geese that never shut up and move between ' +
+    'Patmos and Pergamum.'];
+    var i = Math.floor(Math.random() * jokes.length);
+    sendTextMessage(id, jokes[i] + ' I\'ll give you a sec...');
+    loading(id);
+    setTimeout(function() {
+        sendTextMessage(id, answers[i]);
+    }, 5000);
 }
 
 function sendErrorMessage(id) {
