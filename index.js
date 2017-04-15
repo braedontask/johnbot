@@ -127,6 +127,8 @@ function routeRequests(msg, id) {
         sendVerse(id);
     } else if (generateOr(['joke', 'laugh'], m)) {
         sendJoke(id);
+    } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
+        startGame(id);
     } else {
         sendErrorMessage(id);
     }
@@ -152,7 +154,22 @@ function receivedPostback(event) {
     }
 }
 
-// sending helpers
+function getUserInfo(id) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name',
+        qs: { access_token: config.access_token },
+        method: 'GET'
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            return JSON.parse(response);
+        } else {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        }
+    });
+}
+
 function sendTextMessage(id, m) {
     var messageData = {
         recipient: {
@@ -168,6 +185,8 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
+    var name = getUserInfo(id).first_name;
+    sendTextMessage(id, 'Hey ' + name + '!');
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
@@ -450,8 +469,8 @@ function sendVerse(id) {
 function sendJoke(id) {
     var jokes = ['What\'s worst than burning to death in Hell?', 'Why did the Whore of Babylon cross the road?', 'If ' +
     '2 is better than 1, what is better than 7?', 'What did the Great Red Dragon say to the Whore of Babylon?',
-    'Why did God put on sunglasses?', 'Why do I criticize the Laodiceans?', 'What did I say to Pergamos outside of ' +
-    'Revelation?', 'Who are these famed Nicolaitans that I hate so much?', 'Why am I not married?'];
+    'Why did God put on sunglasses?', 'Why do I criticize the Laodiceans?', 'What did God say to Pergamos?',
+    'Who are these famed Nicolaitans that I hate so much?', 'Why am I not married?'];
     var answers = ['Burning alive in Patmos. Literally. The. Worst.', 'She saw a path of gold and thought she was in Heaven. ' +
     'But PSYCH. She ain\'t ever going to Heaven mwahaha >:)', 'Nothing. Trick question. 7 is literally my fave number.',
     'It\'s about to get lit in here.', 'Because Hell is about to light you up in that infinite sea of fire B-)',
@@ -468,7 +487,11 @@ function sendJoke(id) {
     }, 500);
     setTimeout(function() {
         sendTextMessage(id, answers[i]);
-    }, 5000);
+    }, 7000);
+}
+
+function startGame(id) {
+
 }
 
 function sendErrorMessage(id) {
