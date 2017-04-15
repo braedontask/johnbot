@@ -119,8 +119,8 @@ function routeRequests(msg, id) {
         sendName(id);
     } else if (generateOr(['about', 'bio'], m) || generateAnd(['tell', 'more'], m)) {
         sendAbout(id);
-    } else if (generateOr(['when', 'write', 'written', 'make'], m)) {
-        sendTextMessage(id, "I wrote the Book of Revelation around 95 CE.")
+    } else if (generateOr(['when', 'write', 'written'], m)) {
+        sendWhen(id);
     } else if (generateOr(['verse', 'read', 'text'], m)) {
         sendVerse(id);
     } else {
@@ -312,6 +312,17 @@ function sendAbout(id) {
     'always high (just like an eagle!).');
     sendFileTemplate(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', 'Check out my formal bio', 'Biography + ' +
     'Analysis', 'http://joshseides.com/pdf/about.pdf');
+}
+
+function sendWhen(id) {
+    sendTextMessage(id, 'Some people say I wrote a first version of Revelation under the reign of Roman ' +
+    'Emperor Vespasian between 69 and 79 CE. Others claim I wrote the prophetic book under Emperor Domitian ' +
+    'some time between 81 and 96 CE. The truth? Let\'s just say I wrote Revelation and Patmos and the rest ' +
+    'will always be a mystery hahaha :)');
+    generatePictures(id, ['Learn more about the debate'], ['If you find these scholars\' struggles as entertaining ' +
+    'as I do...'], ['http://40.media.tumblr.com/2b4ee38ada5609c9682f518709565b53/tumblr_mjxk58hIPg1qbhp9xo1_1280.jpg'],
+    ['https://books.google.com/books?id=EcsQknxV-xQC&pg=PA504&lpg=PA504&dq=the%20book%20itself' +
+    '%20however%20may%20imply#v=onepage&q=the%20book%20itself%20however%20may%20imply&f=false']);
 }
 
 function loading(id) {
