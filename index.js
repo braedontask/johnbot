@@ -154,15 +154,15 @@ function receivedPostback(event) {
     }
 }
 
-function getUserInfo(id) {
-    request({
-        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
-        qs: { access_token: config.access_token },
-        method: 'GET'
-    }, function (error, response, body) {
-        return response;
-    });
-}
+// function getUserInfo(id) {
+//     request({
+//         uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
+//         qs: { access_token: config.access_token },
+//         method: 'GET'
+//     }, function (error, response, body) {
+//         return response;
+//     });
+// }
 
 function sendTextMessage(id, m) {
     var messageData = {
@@ -179,8 +179,8 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
-    var name = getUserInfo(id).first_name;
-    sendTextMessage(id, 'Hey ' + name + '!');
+    // var name = getUserInfo(id).first_name;
+    // sendTextMessage(id, 'Hey ' + name + '!');
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
@@ -485,7 +485,7 @@ function sendJoke(id) {
 }
 
 function startGame(id) {
-
+    
 }
 
 function sendErrorMessage(id) {
