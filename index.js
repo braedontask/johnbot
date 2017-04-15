@@ -151,18 +151,24 @@ function receivedPostback(event) {
 }
 
 // sending helpers
-function sendTextMessage(id, messageText) {
+function sendTextMessage(id, m) {
     var messageData = {
         recipient: {
             id: id
         },
         message: {
-            text: messageText
+            text: m
         }
     };
 
     // make POST call
     callSendAPI(messageData);
+}
+
+function sendTextMessages(id, ms) {
+    for (var i = 0; i < ms.length; i++) {
+        sendTextMessage(id, ms[i]);
+    }
 }
 
 function sendGreeting(id) {
@@ -284,11 +290,12 @@ function sendToday(id) {
 }
 
 function sendName(id) {
-    sendTextMessage(id, 'Well, you know it\'s hard to really say. I like to go by John but there\'s such a mystery ' +
+    var m = 'Well, you know it\'s hard to really say. I like to go by John but there\'s such a mystery ' +
     'around my identity in popular culture that I derive such pleasure from trolling people and keeping it that way. But I\'ll spare ' +
-    'you some pain and give you some information that may or may not be completely accurate :P');
-    sendTextMessage(id, 'Here are some portraits of me. Not super accurate but I\'ll leave the rest of the gaps ' +
-        'to your imagination.');
+    'you some pain and give you some information that may or may not be completely accurate :P';
+    var m1 = 'Here are some portraits of me. Not super accurate but I\'ll leave the rest of the gaps ' +
+    'to your imagination.';
+    sendTextMessages(id, [m, m1]);
     var titles = ['I\'m lowkey a book nerd too...', 'Yeah, Jesus and I are tight...', 'Always up for some fine wine ladies!'];
     var subtitles = ['St. John the Evangelist, Domenico Zampieri (1623)', 'The Last Supper, Anonymous (1650)',
     'St. John the Apostle, Peter Paul Rubens (1611)'];
@@ -301,17 +308,18 @@ function sendName(id) {
 }
 
 function sendAbout(id) {
-    sendTextMessage(id, 'I\'m sorry if this is long-winded but my life is pretty cool not gonna lie. I mean, ' +
+    var m = 'I\'m sorry if this is long-winded but my life is pretty cool not gonna lie. I mean, ' +
     'based on the lengthy syntax and elaborate imagery in Revelation, what else would you expect? Hmm...where ' +
-    'do I start?');
-    sendTextMessage(id, 'I was born around 6 CE in the Roman Empire (not sure if you could tell but the Romans ' +
+    'do I start?';
+    var m1 = 'I was born around 6 CE in the Roman Empire (not sure if you could tell but the Romans ' +
     'and I sometimes don\'t like each other). Legend has it I\'ll die soon at age 94 (in 100 CE) on this stupid ' +
     'island Patmos that the Romans have imprisoned me on. You may have noticed my unconventional writing in the ' +
     'Gospel According to John, or the Three Epistles of John (by yours truly). I often rely on Greek philosophy ' +
     'and combine that with a rough, yet potent writing style to give my books some extra kick. History has it that ' +
     'I\'m always represented with an eagle from Ezekiel\'s vision to symbolize ascension and the theological, ' +
     'heavy nature of my writing but I like to think of myself as an Alpha author who\'s beautiful, proud, and ' +
-    'always high (just like an eagle!).');
+    'always high (just like an eagle!).';
+    sendTextMessages(id, [m, m1]);
     sendFileTemplate(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', 'Check out my formal bio', 'Biography + ' +
     'Analysis', 'http://joshseides.com/pdf/about.pdf');
 }
@@ -328,14 +336,15 @@ function sendWhen(id) {
 }
 
 function sendLocation(id) {
-    sendTextMessage(id, 'Where was I when I wrote Revelation you ask? Well if you haven\'t been able to tell from ' +
+    var m = 'Where was I when I wrote Revelation you ask? Well if you haven\'t been able to tell from ' +
     'my salty messages by now, I\'ve been stuck on this stupid island Patmos (in current day Greece) for what seems ' +
-    'like FOREVER :(');
-    sendTextMessage(id, 'The Romans banished me here as punishment for my belief in Jesus. Something about Christianity ' +
+    'like FOREVER :(';
+    var m1 = 'The Romans banished me here as punishment for my belief in Jesus. Something about Christianity ' +
     'posing a subversive threat blah blah blah to the Roman order. I guess we\'re seen as an alternative order and \"deep ' +
-    'state\" to the Romans since we refuse to worship the obviously unholy emperor.');
-    sendTextMessage(id, 'Just drive my point home, Patmos SUCKS. There\'s absolutely no one here, just a bunch of water, ' +
-    'super loud birds, and these many visions from God which scare the crap out of me. See for yourself:');
+    'state\" to the Romans since we refuse to worship the obviously unholy emperor.';
+    var m2 = 'Just drive my point home, Patmos SUCKS. There\'s absolutely no one here, just a bunch of water, ' +
+    'super loud birds, and these many visions from God which scare the crap out of me. See for yourself:';
+    sendTextMessages(id, [m, m1, m2]);
     sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=10&scale=false&size=' +
     '1000x1000&maptype=roadmap&format=png&visual_refresh=true');
 }
