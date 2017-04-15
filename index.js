@@ -141,7 +141,11 @@ function receivedPostback(event) {
         "at %d", senderID, id, payload, timeOfPostback);
 
     // confirmation of postback
-    sendTextMessage(senderID, payload);
+    if (payload.type === 'text') {
+        sendTextMessage(senderID, payload);
+    } else {
+        sendFile(senderID, payload.content);
+    }
 }
 
 // sending helpers
@@ -306,7 +310,7 @@ function sendAbout(id) {
     'I\'m always represented with an eagle from Ezekiel\'s vision to symbolize ascension and the theological, ' +
     'heavy nature of my writing but I like to think of myself as an Alpha author who\'s beautiful, proud, and ' +
     'always high (just like an eagle!).');
-    sendFile(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', './files/about.pdf', 'Check out my formal bio');
+    sendFileTemplate(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', 'Check out my formal bio', 'Biography + Analysis', './files/about.pdf');
 }
 
 function loading(id) {
@@ -440,7 +444,7 @@ function sendButton(id, title, payload) {
                         buttons: [{
                             type: "postback",
                             title: title,
-                            payload: payload
+                            payload: {type: 'text', content: payload}
                         }]
                     }]
                 }
@@ -452,7 +456,7 @@ function sendButton(id, title, payload) {
     callSendAPI(messageData);
 }
 
-function sendFile(id, img, title, file) {
+function sendFileTemplate(id, img, title, subtitle, file) {
     var messageData = {
         recipient: {
             id: id
@@ -465,13 +469,31 @@ function sendFile(id, img, title, file) {
                     elements: [{
                         title: title,
                         image_url: img,
+                        subtitle: subtitle,
                         buttons: [{
-                            type: "file",
+                            type: "postback",
                             title: "Download File",
                             payload: file
                         }]
                     }]
                 }
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendFile(id, file) {
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "file",
+                payload: {url: file}
             }
         }
     };
