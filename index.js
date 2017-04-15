@@ -152,6 +152,8 @@ function receivedPostback(event) {
 
 // sending helpers
 function sendTextMessage(id, m) {
+    loading(id);
+    setTimeout(function() {}, 2000);
     var messageData = {
         recipient: {
             id: id
@@ -168,8 +170,6 @@ function sendTextMessage(id, m) {
 function sendTextMessages(id, ms) {
     for (var i = 0; i < ms.length; i++) {
         sendTextMessage(id, ms[i]);
-        loading(id);
-        setTimeout(function() {}, 500);
     }
 }
 
