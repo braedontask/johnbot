@@ -283,7 +283,7 @@ function sendName(id) {
     'you some pain and give you some information that may or may not be completely accurate :P');
     sendTextMessage(id, 'Here are some portraits of me. Not super accurate but I\'ll leave the rest of the gaps ' +
         'to your imagination.');
-    var titles = ['My beautiful face', 'Yeah, Jesus and I are tight...', 'Always up for some fine wine ladies ;)'];
+    var titles = ['I\'m lowkey a book nerd too...', 'Yeah, Jesus and I are tight...', 'Always up for some fine wine ladies!'];
     var subtitles = ['St. John the Evangelist, Domenico Zampieri (1623)', 'The Last Supper, Anonymous (1650)',
     'St. John the Apostle, Peter Paul Rubens (1611)'];
     var urls = ['https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Zampieri_St_John_Evangelist.jpg/1280px-Zampieri_St_John_Evangelist.jpg',
@@ -296,7 +296,17 @@ function sendName(id) {
 
 function sendAbout(id) {
     sendTextMessage(id, 'I\'m sorry if this is long-winded but my life is pretty cool not gonna lie. I mean, ' +
-    'based on the lengthy syntax and elaborate imagery in Revelation, what else would you expect? (y)');
+    'based on the lengthy syntax and elaborate imagery in Revelation, what else would you expect? Hmm...where ' +
+    'do I start?');
+    sendTextMessage(id, 'I was born around 6 CE in the Roman Empire (not sure if you could tell but the Romans ' +
+    'and I sometimes don\'t like each other). Legend has it I\'ll die soon at age 94 (in 100 CE) on this stupid ' +
+    'island Patmos that the Romans have imprisoned me on. You may have noticed my unconventional writing in the ' +
+    'Gospel According to John, or the Three Epistles of John (by yours truly). I often rely on Greek philosophy ' +
+    'and combine that with a rough, yet potent writing style to give my books some extra kick. History has it that ' +
+    'I\'m always represented with an eagle from Ezekiel\'s vision to symbolize ascension and the theological, ' +
+    'heavy nature of my writing but I like to think of myself as an Alpha author who\'s beautiful, proud, and ' +
+    'always high (just like an eagle!).');
+    sendFile(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', './files/about.pdf', 'Check out my formal bio');
 }
 
 function loading(id) {
@@ -431,6 +441,34 @@ function sendButton(id, title, payload) {
                             type: "postback",
                             title: title,
                             payload: payload
+                        }]
+                    }]
+                }
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendFile(id, img, title, file) {
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: [{
+                        title: title,
+                        image_url: img,
+                        buttons: [{
+                            type: "file",
+                            title: "Download File",
+                            payload: file
                         }]
                     }]
                 }
