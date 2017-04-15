@@ -462,11 +462,11 @@ function sendJoke(id) {
     'Patmos and Pergamum.', 'You could say I\'m a little to trippy, wrath-y, lonely for their liking...but then again ' +
     'I\'m stuck on this stupid island so cut me some slack!'];
     var i = Math.floor(Math.random() * jokes.length);
-    sendTextMessage(id, jokes[i] + ' I\'ll give you a sec...');
+    sendTextMessage(id, jokes[i]);
     loading(id);
     setTimeout(function() {
         sendTextMessage(id, answers[i]);
-    }, 5000);
+    }, 10000);
 }
 
 function sendErrorMessage(id) {
