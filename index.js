@@ -141,10 +141,10 @@ function receivedPostback(event) {
         "at %d", senderID, id, payload, timeOfPostback);
 
     // confirmation of postback
-    if (!payload.includes('http')) {
-        sendTextMessage(senderID, payload);
-    } else {
+    if (payload.includes('http') || payload.includes('./')) {
         sendFile(senderID, payload);
+    } else {
+        sendTextMessage(senderID, payload);
     }
 }
 
