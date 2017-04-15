@@ -463,10 +463,12 @@ function sendJoke(id) {
     'I\'m stuck on this stupid island so cut me some slack!'];
     var i = Math.floor(Math.random() * jokes.length);
     sendTextMessage(id, jokes[i]);
-    loading(id);
+    setTimeout(function () {
+        loading(id);
+    }, 500);
     setTimeout(function() {
         sendTextMessage(id, answers[i]);
-    }, 10000);
+    }, 5000);
 }
 
 function sendErrorMessage(id) {
