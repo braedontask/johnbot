@@ -325,6 +325,19 @@ function sendWhen(id) {
     '%20however%20may%20imply#v=onepage&q=the%20book%20itself%20however%20may%20imply&f=false']);
 }
 
+function sendLocation(id) {
+    sendTextMessage(id, 'Where was I when I wrote Revelation you ask? Well if you haven\'t been able to tell from ' +
+    'my salty messages by now, I\'ve been stuck on this stupid island Patmos (in current day Greece) for what seems ' +
+    'like FOREVER :(');
+    sendTextMessage(id, 'The Romans banished me here as punishment for my belief in Jesus. Something about Christianity ' +
+    'posing a subversive threat blah blah blah to the Roman order. I guess we\'re seen as an alternative order and \"deep ' +
+    'state\" to the Romans since we refuse to worship the obviously unholy emperor.');
+    sendTextMessage(id, 'Just drive my point home, Patmos SUCKS. There\'s absolutely no one here, just a bunch of water, ' +
+    'super loud birds, and these many visions from God which scare the crap out of me. See for yourself:');
+    sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=10&scale=false&size=' +
+    '1000x1000&maptype=roadmap&format=png&visual_refresh=true');
+}
+
 function loading(id) {
     var messageData = {
         recipient: {
@@ -506,6 +519,23 @@ function sendFile(id, file) {
             attachment: {
                 type: "file",
                 payload: {url: file}
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendImage(id, link) {
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {url: link}
             }
         }
     };
