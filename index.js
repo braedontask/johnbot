@@ -451,7 +451,7 @@ function sendJoke(id) {
     var jokes = ['What\'s worst than burning to death in Hell?', 'Why did the Whore of Babylon cross the road?', 'If ' +
     '2 is better than 1, what is better than 7?', 'What did the Great Red Dragon say to the Whore of Babylon?',
     'Why did God put on sunglasses?', 'Why do I criticize the Laodiceans?', 'What did I say to Pergamos outside of ' +
-    'Revelation?', 'Who are these famed Nicolaitans that I hate so much?'];
+    'Revelation?', 'Who are these famed Nicolaitans that I hate so much?', 'Why am I not married?'];
     var answers = ['Burning alive in Patmos. Literally. The. Worst.', 'She saw a path of gold and thought she was in Heaven. ' +
     'But PSYCH. She ain\'t ever going to Heaven mwahaha >:)', 'Nothing. Trick question. 7 is literally my fave number.',
     'It\'s about to get lit in here.', 'Because Hell is about to light you up in that infinite sea of fire B-)',
@@ -459,7 +459,8 @@ function sendJoke(id) {
     'slightly suspicious warm water around me).', 'Stop being so Per-ky with your idols (hehe)...it\'s fine though ' +
     'they hate the Nicolaitans so we all chill.', 'While scholars think the Nicolaitans were a group worshipping idols ' +
     'similar to Balaam, in reality they\'re just a SUPER annoying gaggle of geese that never shut up and move between ' +
-    'Patmos and Pergamum.'];
+    'Patmos and Pergamum.', 'You could say I\'m a little to trippy, wrath-y, lonely for their liking...but then again ' +
+    'I\'m stuck on this stupid island so cut me some slack!'];
     var i = Math.floor(Math.random() * jokes.length);
     sendTextMessage(id, jokes[i] + ' I\'ll give you a sec...');
     loading(id);
