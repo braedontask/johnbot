@@ -310,7 +310,8 @@ function sendAbout(id) {
     'I\'m always represented with an eagle from Ezekiel\'s vision to symbolize ascension and the theological, ' +
     'heavy nature of my writing but I like to think of myself as an Alpha author who\'s beautiful, proud, and ' +
     'always high (just like an eagle!).');
-    sendFileTemplate(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', 'Check out my formal bio', 'Biography + Analysis', './files/about.pdf');
+    sendFileTemplate(id, 'http://totus2us.com/typo3temp/pics/1e211e1830.jpg', 'Check out my formal bio', 'Biography + ' +
+    'Analysis', 'http://joshseides.com/pdf/about.pdf');
 }
 
 function loading(id) {
