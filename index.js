@@ -156,17 +156,11 @@ function receivedPostback(event) {
 
 function getUserInfo(id) {
     request({
-        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name',
+        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
         qs: { access_token: config.access_token },
         method: 'GET'
     }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            return JSON.parse(response);
-        } else {
-            console.error("Unable to send message.");
-            console.error(response);
-            console.error(error);
-        }
+        return JSON.parse(response);
     });
 }
 
