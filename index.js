@@ -494,7 +494,7 @@ function sendFile(id, file) {
         message: {
             attachment: {
                 type: "file",
-                payload: file
+                payload: {url: file}
             }
         }
     };
