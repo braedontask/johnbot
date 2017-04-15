@@ -121,6 +121,8 @@ function routeRequests(msg, id) {
         sendAbout(id);
     } else if (generateOr(['when', 'write', 'written'], m)) {
         sendWhen(id);
+    } else if (generateOr(['where', 'location', 'locate'], m)) {
+        sendLocation(id);
     } else if (generateOr(['verse', 'read', 'text'], m)) {
         sendVerse(id);
     } else {
