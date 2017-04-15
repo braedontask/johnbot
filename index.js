@@ -55,6 +55,9 @@ app.post('/webhook', function (req, res) {
     }
 });
 
+// simple db for game
+var gameData = {};
+
 // incoming events handling
 function receivedMessage(event) {
     var senderID = event.sender.id;
@@ -191,8 +194,7 @@ function sendGreeting(id) {
     'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Hi! Here\'s some ' +
     'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
     'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
-    'hot today here on Patmos...maybe even hotter than that lake of fire.', 'Here\'s a pacman symbol just because ' +
-    ':v (even though it hasn\'t been invented yet God showed me...we in 1980 baby!)'];
+    'hot today here on Patmos...maybe even hotter than that lake of fire.'];
     var m = greetings[Math.floor(Math.random() * greetings.length)];
     sendTextMessage(id, m);
 }
@@ -485,7 +487,10 @@ function sendJoke(id) {
 }
 
 function startGame(id) {
-    
+    gameData[id] = 0.0;
+    var data = [{title: '0', payload: 'Question1--0'}, {title: '1 or 2', payload: 'Question1--1'},
+    {title: '3 to 5', payload: 'Question1--2'}, {title: 'all of them', payload: 'Question1--3'}];
+    sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
 function sendErrorMessage(id) {
@@ -578,6 +583,29 @@ function sendImage(id, link) {
                 type: "image",
                 payload: {url: link}
             }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendChoices(id, prompt, choices) {
+    var data = [];
+    for (var i = 0; i < choices.length; i++) {
+        data.push({
+            content_type: 'text',
+            title: choices[i].title,
+            payload: choices[i].payload
+        });
+    }
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            text: prompt,
+            quick_replies: data
         }
     };
 
