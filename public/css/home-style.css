@@ -84,10 +84,9 @@ div.container {
 }
 
 .header-image h1 {
+    font-family: 'SFBold';
     background: #ffffff;
     color: #ba1616;
-    padding: 5%;
-    margin-top: 5%;
 }
 
 #about {
