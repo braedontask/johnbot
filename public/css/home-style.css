@@ -78,39 +78,9 @@ div.container {
 }
 
 .header-image {
-    padding-left: 10%;
-    padding-right: 10%;
     background-image: url('../img/background.png');
     background-size: 100%;
-    border-bottom: 5px solid #ba1616;
-}
-
-.intro-screen h1 {
-    text-align: center;
-    font-size: 7vw;
-    font-family: "SFBold";
-    font-weight: 500;
-    color: #ffffff;
-    border-bottom: 2px solid #ffffff;
-    margin-bottom: 5%;
-}
-
-.intro-screen .row {
-    margin: 2% 0 2% 0;
-}
-
-.intro-screen .summary-info h3 {
-    text-align: center;
-    font-family: 'GothamBold';
-    font-size: 2vw;
-    color: #ffffff;
-}
-
-.intro-screen .summary-info img {
-    float: right;
-    display: inline;
-    height: 30%;
-    width: 30%;
+    height: 40vw;
 }
 
 #about {
