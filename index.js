@@ -108,7 +108,66 @@ function generateAnd(lst, query) {
 
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
-    if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
+    if (generateOr(['Answer:'], m)) {
+        if (generateOr(['0'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
+            sendSecondQuestion(id);
+        } else if (generateOr(['1 or 2'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
+            sendSecondQuestion(id);
+        } else if (generateOr(['3 to 5'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 3));
+            sendSecondQuestion(id);
+        } else if (generateOr(['all of them'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5)));
+            sendSecondQuestion(id);
+        } else if (generateOr(['John (me)'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 4));
+            sendThirdQuestion(id);
+        } else if (generateOr(['Matthew'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 1));
+            sendThirdQuestion(id);
+        } else if (generateOr(['Judas'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) - 3));
+            sendThirdQuestion(id);
+        } else if (generateOr(['They don\'t talk.'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 2));
+            sendFourthQuestion(id);
+        } else if (generateOr(['\"Why you gotta play me like that?\"'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
+            sendFourthQuestion(id);
+        } else if (generateOr(['\"Don\'t come back. Ever.\"'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
+            sendFourthQuestion(id);
+        } else if (generateOr(['Cain'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 2));
+            sendFifthQuestion(id);
+        } else if (generateOr(['Jeremiah'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
+            sendFifthQuestion(id);
+        } else if (generateOr(['Delilah'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
+            sendFifthQuestion(id);
+        } else if (generateOr(['It\'s gonna be a LIT party!'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 10));
+            sendSixthQuestion(id);
+        } else if (generateOr(['Eh.'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 1));
+            sendSixthQuestion(id);
+        } else if (generateOr(['You tell me.'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
+            sendSixthQuestion(id);
+        } else if (generateOr(['Psalms'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5)));
+            endGame(id);
+        } else if (generateOr(['Revelation'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5)));
+            endGame(id);
+        } else {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
+            endGame(id);
+        }
+    } else if (generateOr(['hello', 'hi', 'what\'s up', 'hey', 'yo'], m)) {
         sendGreeting(id);
     } else if (generateOr(['feel', 'how are you', 'feeling', 'how r u'], m)) {
         sendFeeling(id);
@@ -132,9 +191,6 @@ function routeRequests(msg, id) {
         sendJoke(id);
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
-    } else if (generateOr(['0'], m)) {
-        gameUpdate(id, 10);
-        sendSecondQuestion(id);
     } else {
         sendErrorMessage(id);
     }
@@ -502,13 +558,67 @@ function startGame(id) {
 
 function gameUpdate(id, change) {
     gameData[id] += change;
-    sendTextMessage(id, 'Score is: ' + gameData[id]);
 }
 
 function sendSecondQuestion(id) {
-    sendTextMessage(id, 'Score is: ' + gameData[id]);
-    var data = [{title: 'John (me)', payload: '0'}, {title: 'Matthew', payload: '1'}];
-    sendChoices(id, 'Which disciple do you like better', data);
+    var data = [{title: 'John (me)', payload: '0'}, {title: 'Matthew', payload: '1'}, {title: 'Judas', payload: '2'}];
+    sendChoices(id, 'Which of the following disciples do you like the best?', data);
+}
+
+function sendThirdQuestion(id) {
+    var data = [{title: 'They don\'t talk.', payload: '0'}, {title: '\"Why you gotta play me like that?\"', payload: '1'},
+    {title: '\"Don\'t come back. Ever.\"', payload: '2'}];
+    sendChoices(id, 'What is God\'s most frequent comment to Satan?', data);
+}
+
+function sendFourthQuestion(id) {
+    var data = [{title: 'Cain', payload: '0'}, {title: 'Jeremiah', payload: '1'}, {title: 'Delilah', payload: '2'}];
+    sendChoices(id, 'If you had to pick one of the following biblical names, which would you choose?', data);
+}
+
+function sendFifthQuestion(id) {
+    var data = [{title: 'It\'s gonna be a LIT party!', payload: '0'}, {title: 'Eh.', payload: '1'},
+    {title: 'You tell me.', payload: '2'}];
+    sendChoices(id, 'How do you feel about the afterlife?', data);
+}
+
+function sendSixthQuestion(id) {
+    var data = [{title: 'Psalms', payload: '0'}, {title: 'Revelation', payload: '1'}, {title: 'Esther', payload: '2'}];
+    sendChoices(id, 'Pop trivia! The longest verse in the Bible comes from what book?', data);
+}
+
+function endGame(id) {
+    var score = gameData[id];
+    var results = ['I\'m so sorry...you\'ll probs be in Hell.',
+    'Dude! LIT! You\'ll be chilling with me in Heaven!',
+    'Hehe...I know your fate but I\'m a troll and won\'t tell you (unless you play again).',
+    'It\'s 50-50 honestly. Maybe if you cut down on that Netflix binge-watching and go to church more often...',
+    'Chances are not looking good but hey, who says God can\'t work miracles ;)',
+    'If I revealed it you would hate me...',
+    'Do you know what paradise looks like? No? Well you never will...',
+    'Grab your sunglasses cuz you\'re future is looking bright B-)',
+    'Hellish with a chance of salvation...',
+    'Heaven...no Hell...no. Play again, I can\'t really tell.',
+    'Meet me by the golden gates when you get to Heaven ;)',
+    'I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...'];
+    if (score > 15) {
+        sendTextMessage(id, results[6]);
+    } else if (score > 20) {
+        sendTextMessage(id, results[5]);
+    } else if (score > 25) {
+        sendTextMessage(id, results[4]);
+    } else if (score > 30) {
+        sendTextMessage(id, results[3]);
+    } else if (score > 35) {
+        sendTextMessage(id, results[8]);
+    } else if (score > 37) {
+        sendTextMessage(id, results[1]);
+    } else if (score > 40) {
+        sendTextMessage(id, results[7]);
+    } else {
+        sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
+    }
+    sendButton(id, 'Play again!', 'Am I going to Heaven or Hell...again?');
 }
 
 function sendErrorMessage(id) {
@@ -529,7 +639,7 @@ function sendButton(id, title, payload) {
                 payload: {
                     template_type: "generic",
                     elements: [{
-                        title: "Pssst...prompt John for more",
+                        title: "Follow-up!",
                         buttons: [{
                             type: "postback",
                             title: title,
@@ -622,7 +732,7 @@ function sendChoices(id, prompt, choices) {
             id: id
         },
         message: {
-            text: prompt,
+            text: 'Answer: ' + prompt,
             quick_replies: data
         }
     };
