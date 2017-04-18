@@ -575,10 +575,11 @@ div.container {
 }
 
 .code {
-    height: 95%;
-    width: 95%;
+    height: 85%;
+    width: 85%;
     display: block;
     margin: auto;
+    margin-top: 5%;
 }
 
 .code-caption {
