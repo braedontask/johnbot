@@ -74,7 +74,6 @@ function receivedMessage(event) {
     var messageAttachments = message.attachments;
 
     if (messageText) {
-        console.log('Gets here');
         routeRequests(messageText, senderID);
     } else if (messageAttachments) {
         sendTextMessage(senderID, "Message with attachment received");
@@ -110,6 +109,7 @@ function generateAnd(lst, query) {
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
     if (generateOr(['answer'], m)) {
+        console.log('Here: ' + m);
         if (generateOr(['0'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
             sendSecondQuestion(id);
