@@ -84,8 +84,8 @@ div.container {
 }
 
 .header-image h1 {
-    font-family: 'SFBold';
-    background: #ffffff;
+    font-family: 'GothamBold';
+    border-bottom: 3px solid #ba1616;
     color: #ba1616;
 }
 
