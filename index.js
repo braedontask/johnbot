@@ -576,7 +576,7 @@ function sendFourthQuestion(id) {
 }
 
 function sendFifthQuestion(id) {
-    var data = [{title: 'LIT partytime!', payload: 'LIT!!!'}, {title: 'Eh.', payload: 'Eh.'}, {title: 'You tell me.', payload: 'You tell me.'}];
+    var data = [{title: 'LIT!!!', payload: 'LIT!!!'}, {title: 'Eh.', payload: 'Eh.'}, {title: 'You tell me.', payload: 'You tell me.'}];
     sendChoices(id, 'How do you feel about the afterlife?', data);
 }
 
@@ -600,19 +600,19 @@ function endGame(id) {
     'Heaven...no Hell...no. Play again, I can\'t really tell.',
     'Meet me by the golden gates when you get to Heaven ;)',
     'I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...'];
-    if (score > 15) {
+    if (score < 8) {
         sendTextMessage(id, results[6]);
-    } else if (score > 10) {
+    } else if (score < 10) {
         sendTextMessage(id, results[5]);
-    } else if (score > 15) {
+    } else if (score < 15) {
         sendTextMessage(id, results[4]);
-    } else if (score > 20) {
+    } else if (score < 20) {
         sendTextMessage(id, results[3]);
-    } else if (score > 25) {
+    } else if (score < 25) {
         sendTextMessage(id, results[8]);
-    } else if (score > 27) {
+    } else if (score < 27) {
         sendTextMessage(id, results[1]);
-    } else if (score > 32) {
+    } else if (score < 32) {
         sendTextMessage(id, results[7]);
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
