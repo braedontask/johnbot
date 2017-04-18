@@ -122,49 +122,49 @@ function routeRequests(msg, id) {
         } else if (generateOr(['all of them'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5)));
             sendSecondQuestion(id);
-        } else if (generateOr(['John (me)'], m)) {
+        } else if (generateOr(['john (me)'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 4));
             sendThirdQuestion(id);
-        } else if (generateOr(['Matthew'], m)) {
+        } else if (generateOr(['matthew'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 1));
             sendThirdQuestion(id);
-        } else if (generateOr(['Judas'], m)) {
+        } else if (generateOr(['judas'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) - 3));
             sendThirdQuestion(id);
-        } else if (generateOr(['They don\'t talk.'], m)) {
+        } else if (generateOr(['they don\'t talk.'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 2));
             sendFourthQuestion(id);
-        } else if (generateOr(['\"Why you gotta play me like that?\"'], m)) {
+        } else if (generateOr(['\"why you gotta play me like that?\"'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             sendFourthQuestion(id);
-        } else if (generateOr(['\"Don\'t come back. Ever.\"'], m)) {
+        } else if (generateOr(['\"don\'t come back. ever.\"'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
             sendFourthQuestion(id);
-        } else if (generateOr(['Cain'], m)) {
+        } else if (generateOr(['cain'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 2));
             sendFifthQuestion(id);
-        } else if (generateOr(['Jeremiah'], m)) {
+        } else if (generateOr(['jeremiah'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
             sendFifthQuestion(id);
-        } else if (generateOr(['Delilah'], m)) {
+        } else if (generateOr(['delilah'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
             sendFifthQuestion(id);
-        } else if (generateOr(['It\'s gonna be a LIT party!'], m)) {
+        } else if (generateOr(['it\'s gonna be a lit party!'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 10));
             sendSixthQuestion(id);
-        } else if (generateOr(['Eh.'], m)) {
+        } else if (generateOr(['eh.'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 1));
             sendSixthQuestion(id);
-        } else if (generateOr(['You tell me.'], m)) {
+        } else if (generateOr(['you tell me.'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             sendSixthQuestion(id);
-        } else if (generateOr(['Psalms'], m)) {
+        } else if (generateOr(['psalms'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5)));
             endGame(id);
-        } else if (generateOr(['Revelation'], m)) {
+        } else if (generateOr(['revelation'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5)));
             endGame(id);
-        } else if (generateOr(['Esther'], m)) {
+        } else {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             endGame(id);
         }
@@ -551,8 +551,8 @@ function sendJoke(id) {
 
 function startGame(id) {
     gameData[id] = 0.0;
-    var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1 or 2'},
-    {title: '3 to 5', payload: '3 to 5'}, {title: 'all of them', payload: 'all of them'}];
+    var data = [{title: '> 0', payload: '0'}, {title: '> 1 or 2', payload: '1 or 2'},
+    {title: '> 3 to 5', payload: '3 to 5'}, {title: '> all of them', payload: 'all of them'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
@@ -725,7 +725,7 @@ function sendChoices(id, prompt, choices) {
         data.push({
             content_type: 'text',
             title: 'Answer: ' + choices[i].title,
-            payload: 'Answer: ' + choices[i].payload
+            payload: choices[i].payload
         });
     }
     var messageData = {
