@@ -49,8 +49,8 @@ div.container {
 }
 
 .btn:hover {
-    background: #f9c80e;
-    border: #f9c80e;
+    background: #ddb31a;
+    border: #ddb31a;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
@@ -159,8 +159,8 @@ div.container {
 }
 
 #about .timeline .timeline-button .btn {
-    background: #f9c80e;
-    border: #f9c80e;
+    background: #ddb31a;
+    border: #ddb31a;
 }
 
 #about .timeline .timeline-button .btn:hover {
@@ -513,7 +513,7 @@ div.container {
 }
 
 .jumbotron .quote:hover {
-  background-color: #f9c80e;
+  background-color: #ddb31a;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
@@ -551,7 +551,7 @@ div.container {
     padding-right: 10%;
     padding-bottom: 3%;
     color: #ffffff;
-    background: #f9c80e;
+    background: #ddb31a;
 }
 
 .social-media h1 {
@@ -573,9 +573,9 @@ div.container {
 }
 
 .social-media .social-btn {
-    color: #f9c80e;
-    background: #f9c80e;
-    border: #f9c80e;
+    color: #ddb31a;
+    background: #ddb31a;
+    border: #ddb31a;
     border-radius: 100%;
     padding: 5px 10px 5px 10px;
 }
