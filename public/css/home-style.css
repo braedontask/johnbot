@@ -78,9 +78,16 @@ div.container {
 }
 
 .header-image {
-    background-image: url('../img/background.png');
+    background-image: url('../img/background1.png');
     background-size: 100%;
     height: 40vw;
+}
+
+.header-image h1 {
+    background: #ffffff;
+    color: #ba1616;
+    padding: 5%;
+    margin-top: 5%;
 }
 
 #about {
