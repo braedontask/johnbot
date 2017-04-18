@@ -108,7 +108,7 @@ function generateAnd(lst, query) {
 
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
-    if (generateOr(['answer'], m)) {
+    if (generateOr(['a:'], m)) {
         console.log('Here: ' + m);
         if (generateOr(['0'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
@@ -576,8 +576,7 @@ function sendFourthQuestion(id) {
 }
 
 function sendFifthQuestion(id) {
-    var data = [{title: 'LIT partytime!', payload: 'LIT partytime!'}, {title: 'Eh.', payload: 'Eh.'},
-    {title: 'You tell me.', payload: 'You tell me.'}];
+    var data = [{title: 'LIT partytime!', payload: 'LIT!!!'}, {title: 'Eh.', payload: 'Eh.'}, {title: 'You tell me.', payload: 'You tell me.'}];
     sendChoices(id, 'How do you feel about the afterlife?', data);
 }
 
@@ -588,6 +587,7 @@ function sendSixthQuestion(id) {
 
 function endGame(id) {
     var score = gameData[id];
+    console.log('score: ' + score);
     var results = ['I\'m so sorry...you\'ll probs be in Hell.',
     'Dude! LIT! You\'ll be chilling with me in Heaven!',
     'Hehe...I know your fate but I\'m a troll and won\'t tell you (unless you play again).',
@@ -722,7 +722,7 @@ function sendChoices(id, prompt, choices) {
     for (var i = 0; i < choices.length; i++) {
         data.push({
             content_type: 'text',
-            title: 'Answer: ' + choices[i].title,
+            title: 'A: ' + choices[i].title,
             payload: choices[i].payload
         });
     }
