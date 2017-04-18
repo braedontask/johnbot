@@ -27,7 +27,7 @@ app.get('/webhook', function(req, res) {
 
 // display the web page
 app.get('/', function(req, res) {
-    res.sendFile('index');
+    res.sendFile(path.join(__dirname + '/index'));
 });
 
 // message processing
