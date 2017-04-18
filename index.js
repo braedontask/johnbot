@@ -502,7 +502,6 @@ function sendArtAnalysis(id) {
 }
 
 function sendMeme(id) {
-    sendTextMessage(id, 'See the work\'s title, author, and date in the file name.');
     var memes = ['http://joshseides.com/img/memes/angeloftherevelation_williamblake_1805.jpg',
     'http://joshseides.com/img/memes/danteandvirgil_williamadolphebouguereau_1850.jpg',
     'http://joshseides.com/img/memes/dantesinferno_gustavedore_1868.jpg',
@@ -566,7 +565,9 @@ function sendMeme(id) {
     var i = Math.floor(Math.random() * memes.length);
     sendTextMessage(id, info[i]);
     loading(id);
-    sendImage(id, memes[i]);
+    setTimeout(function() {
+        sendImage(id, memes[i]);
+    }, 2500);
 }
 
 function loading(id) {
