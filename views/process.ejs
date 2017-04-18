@@ -10,13 +10,14 @@
     <meta name="author" content="Josh Seides">
     <meta name="keywords" content="John Bot">
 
-    <title>Home | The John Bot</title>
+    <title>Process | The John Bot</title>
 
     <!-- Custom CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="./css/menu.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/home-style.css" rel="stylesheet">
+    <link href="./css/process-style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +34,6 @@
 <body>
 
 <!-- Nav Menu -->
-
 <div id="header" class="nav-header">
     <div class="container">
         <div id="cssmenu">
@@ -51,51 +51,91 @@
 
 <div class="space"></div>
 
+<div class="header-image">
+    <h1>Process</h1>
+</div>
+
 <!-- About Section -->
-<section id="about">
+<section class="process">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image">
-                            <i class="fa fa-comments fa-5x"></i>
-                        </div>
-                        <div class="timeline-button">
-                            <a href="html/about.html" class="btn btn-primary pull-right"><i class="fa fa-plus plus-icon"></i></a>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3>Use The John Bot</h3>
-                                <h4 class="subheading">Documentation</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">See a list of key words and conversation initiators for The John Bot.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <i class="fa fa-code fa-5x"></i>
-                        </div>
-                        <div class="timeline-button">
-                            <a href="html/business.html" class="btn btn-primary pull-left" id="leftElement1"><i class="fa fa-plus plus-icon"></i></a>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3>Learn about The John Bot's Construction</h3>
-                                <h4 class="subheading">Process</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Read the technical expertise needed to code the Messenger bot and the basic workflow for the project.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <h1>Skills + Training</h1>
+            <hr>
+            <h2>Skills</h2>
+            <p>
+                This Facebook Messenger Bot required an array of programming skills to successfully complete. The main
+                languages and frameworks used to produce the bot include:
+            </p>
+            <ul>
+                <li>JavaScript</li>
+                <li>nodeJS</li>
+                <li>Express</li>
+                <li>HTML + CSS (for website) with EJS templating</li>
+            </ul>
+            <p>
+                The bot also required heavy learning of the Facebook Messenger Bot API (which as a relatively recent
+                development remains slightly convoluted). In total, the app required about 2600 lines of code (1000 lines
+                for the main server file, 400 lines for HTML files, 1000 lines of CSS mostly adapted from previous projects,
+                and 200 lines of supporting JavaScript modules).
+            </p>
+            <br>
+            <h2>Training</h2>
+            <p>
+                I have had much past experience to equip me to work on this project. I have had a couple years of web
+                development experience (in HTML + CSS, JavaScript, nodeJS, Express, Angular, React, and others) prior
+                to college. For the past year, I've engaged in some freelance website design jobs that have also bolstered
+                my experience in standard JavaScript and web development practices. At Harvard, I currently work as
+                a Product Manager for HSA (Harvard Student Agencies) Dev, managing teams ranging from 4-8 software engineers
+                (other Harvard undergraduates) to work on jobs for outside clients, including Harvard Business School,
+                local Cambridge startups, and other entities. At HSA Dev, I have gained further experience with JavaScript,
+                nodeJS, Express, and backend work with Python and mongoDB.
+            </p>
+            <br>
+            <p>Check out my full experience and portfolio at <a href="http://joshseides.com/html/coding.html" target="_blank">my personal site</a>.</p>
+        </div>
+        <br>
+        <div class="row">
+            <h1>Project Organization</h1>
+            <hr>
+            <h2>Content</h2>
+            <p>
+                The project took an extreme amount of planning and execution. The overall structure of the project was
+                divided into two parts: content and coding. In terms of content, in-depth literary analysis needed to
+                be written for 4 artworks, 1 thematic analysis mini-essay, and 3 other works of literature (1 movie,
+                1 song, and 1 poem). In addition, 30 memes were created based on artwork depicting scenes or ideas from
+                Revelation.
+            </p>
+            <br>
+            <h2>Coding</h2>
+            <p>
+                Creating Facebook Messenger Bots represented unfamiliar territory for me before this project, so much
+                of the challenge of this project rested on learning the Messenger API. In terms of execution, the project
+                was developed in roughly the following steps:
+            </p>
+            <ol>
+                <li>Creating a Facebook page and app token for the bot</li>
+                <li>Setting up the bot framework in JavaScript</li>
+                <li>Connecting to Messenger APIs</li>
+                <li>Integrating an Express and nodeJS server into the bot framework</li>
+                <li>Establishing GET and POST routes for the Express server</li>
+                <li>Making sense of and creating routing requests for Facebook webhooks</li>
+                <li>Creating random message selection and flexible natural language processing funtionality</li>
+                <li>Connecting to the Lad Bible API for random Revelation verse generation</li>
+                <li>Implementing various routes, starting with casual conversations</li>
+                <li>Creating modular functions for file upload, picture generation, and carousel templating</li>
+                <li>Integrating PDF uploads into the bot</li>
+                <li>Incorporating video links and audio uploads for literature allusions</li>
+                <li>Creating a client-side state array for the Heaven and Hell game</li>
+                <li>Leveraging Facebook API for "quick choices" to create a smooth interface for the game</li>
+                <li>Developing advanced UI for the bot, including a menu system next to the message bar</li>
+                <li>Implementing the website</li>
+                <li>Deploying the bot and website</li>
+            </ol>
         </div>
     </div>
 </section>
+
+<br><br>
 
 <!-- Footer -->
 <footer class="text-center" style="margin-top: 0">

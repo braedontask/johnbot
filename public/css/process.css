@@ -28,20 +28,20 @@
     src: url("../fonts/Roboto-Medium.ttf") format("truetype");
 }
 
-.docs {
+.process {
     padding-left: 10%;
     padding-right: 10%;
     color: #000000;
 }
 
-.docs h1 {
+.process h1 {
     font-family: 'SFUltralight';
     font-size: 70px;
     padding: 40px 0 20px 0;
     margin: 0 0 0 0;
 }
 
-.docs h2 {
+.process h2 {
     font-family: 'SFBold';
     font-size: 20px;
     color: #ba1616;
@@ -53,7 +53,7 @@
     }
 }
 
-.docs p, .docs li {
+.process p, .process li {
     font-family: 'Roboto-Thin';
     font-weight: 700;
     color: #000000
@@ -63,6 +63,6 @@
     color: #999999;
 }
 
-.docs strong, .docs b {
+.process strong, .process b {
     font-family: 'Roboto-Medium';
 }
