@@ -551,7 +551,7 @@ function sendJoke(id) {
 function startGame(id) {
     gameData[id] = 0.0;
     var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1 or 2'},
-    {title: '3 to 5', payload: '2'}, {title: 'all of them', payload: '3'}];
+    {title: '3 to 5', payload: '3 to 5'}, {title: 'all of them', payload: 'all of them'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
@@ -560,29 +560,30 @@ function gameUpdate(id, change) {
 }
 
 function sendSecondQuestion(id) {
-    var data = [{title: 'John (me)', payload: '0'}, {title: 'Matthew', payload: '1'}, {title: 'Judas', payload: '2'}];
+    var data = [{title: 'John (me)', payload: 'John (me)'}, {title: 'Matthew', payload: 'Matthew'}, {title: 'Judas', payload: 'Judas'}];
     sendChoices(id, 'Which of the following disciples do you like the best?', data);
 }
 
 function sendThirdQuestion(id) {
-    var data = [{title: 'They don\'t talk.', payload: '0'}, {title: '\"Why you gotta play me like that?\"', payload: '1'},
-    {title: '\"Don\'t come back. Ever.\"', payload: '2'}];
+    var data = [{title: 'They don\'t talk.', payload: 'They don\'t talk.'},
+    {title: '\"Why you gotta play me like that?\"', payload: '\"Why you gotta play me like that?\"'},
+    {title: '\"Don\'t come back. Ever.\"', payload: '\"Don\'t come back. Ever.\"'}];
     sendChoices(id, 'What is God\'s most frequent comment to Satan?', data);
 }
 
 function sendFourthQuestion(id) {
-    var data = [{title: 'Cain', payload: '0'}, {title: 'Jeremiah', payload: '1'}, {title: 'Delilah', payload: '2'}];
+    var data = [{title: 'Cain', payload: 'Cain'}, {title: 'Jeremiah', payload: 'Jeremiah'}, {title: 'Delilah', payload: 'Delilah'}];
     sendChoices(id, 'If you had to pick one of the following biblical names, which would you choose?', data);
 }
 
 function sendFifthQuestion(id) {
-    var data = [{title: 'It\'s gonna be a LIT party!', payload: '0'}, {title: 'Eh.', payload: '1'},
-    {title: 'You tell me.', payload: '2'}];
+    var data = [{title: 'It\'s gonna be a LIT party!', payload: 'It\'s gonna be a LIT party!'}, {title: 'Eh.', payload: 'Eh.'},
+    {title: 'You tell me.', payload: 'You tell me.'}];
     sendChoices(id, 'How do you feel about the afterlife?', data);
 }
 
 function sendSixthQuestion(id) {
-    var data = [{title: 'Psalms', payload: '0'}, {title: 'Revelation', payload: '1'}, {title: 'Esther', payload: '2'}];
+    var data = [{title: 'Psalms', payload: 'Psalms'}, {title: 'Revelation', payload: 'Revelation'}, {title: 'Esther', payload: 'Esther'}];
     sendChoices(id, 'Pop trivia! The longest verse in the Bible comes from what book?', data);
 }
 
@@ -623,7 +624,7 @@ function endGame(id) {
 function sendErrorMessage(id) {
     var site = 'https://boiling-retreat-40010.herokuapp.com/';
     var text = 'Oh no! I didn\'t understand your message. I\'m not Alpha and the Omega, the beginning and the ' +
-            'end (blah blah blah) by the way. Check out ' + site + ' for some things I can talk to you about.';
+            'ending (blah blah blah) by the way. Check out ' + site + ' for some things I can talk to you about.';
     sendTextMessage(id, text);
 }
 
