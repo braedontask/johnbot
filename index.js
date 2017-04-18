@@ -724,7 +724,7 @@ function sendChoices(id, prompt, choices) {
         data.push({
             content_type: 'text',
             title: 'Answer: ' + choices[i].title,
-            payload: choices[i].payload
+            payload: 'Answer: ' + choices[i].payload
         });
     }
     var messageData = {
