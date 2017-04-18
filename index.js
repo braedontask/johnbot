@@ -132,7 +132,7 @@ function routeRequests(msg, id) {
         sendJoke(id);
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
-    } else if (generateOr(['Question1--'], m)) {
+    } else if (generateOr(['0'], m)) {
         sendTextMessage(id, 'received from normal text');
     } else {
         sendErrorMessage(id);
@@ -142,7 +142,6 @@ function routeRequests(msg, id) {
 function receivedPostback(event) {
     var senderID = event.sender.id;
     var id = event.recipient.id;
-    var timeOfPostback = event.timestamp;
 
     // The 'payload' param is a developer-defined field which is set in a postback
     // button for Structured Messages.
@@ -154,7 +153,7 @@ function receivedPostback(event) {
     // confirmation of postback
     if (payload.includes('http') || payload.includes('./')) {
         sendFile(senderID, payload);
-    } else if (payload.includes('Question1--')) {
+    } else if (payload.includes('0')) {
         sendTextMessage(senderID, 'received from postback');
     } else {
         sendTextMessage(senderID, payload);
@@ -224,7 +223,7 @@ function sendFeeling(id) {
 
 function sendHeaven(id) {
     sendTextMessage(id, 'Check out these swag pictures.');
-    var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'Also there are pretty clouds...'];
+    var titles = ['Yeah, the sky opens...', 'It\'s a mess up here...', 'It just never ends...', 'There are pretty clouds...'];
     var subtitles = ['The Assumption of the Virgin, Francesco Botticini (1476)', 'The Last Judgment, Michelangelo ' +
     '(1541)', 'The Assumption of the Virgin, Antonio Correggio (1530)', 'The Apotheosis of St. Ignatius, Baciccio ' +
     '(1685)'];
@@ -241,8 +240,8 @@ function sendHeaven(id) {
 
 function sendHell(id) {
     sendTextMessage(id, 'Check out these swag pictures.');
-    var titles = ['When you thought it was hard enough to use one head...', 'They all creepily thirst for your hair...',
-    'Enough. Said.', 'Dinner is served a la hot pot...'];
+    var titles = ['When you thought it was hard enough to use one head...', 'I literally do not know how to describe ' +
+    'these \"things\"...', 'Enough. Said.', 'Dinner is served a la hot pot...'];
     var subtitles = ['The Great Red Dragon and the Beast of the Sea, William Blake (1805)', 'The Temptation of St. ' +
     'Anthony, Matthias Grunewald (1516)', 'The Garden of Earthly Delights, Hieronymus Bosch (1510)',
     'The Last Judgment, Fra Angelico (1430)'];
@@ -351,10 +350,12 @@ function sendLocation(id) {
     'my salty messages by now, I\'ve been stuck on this stupid island Patmos (in current day Greece) for what seems ' +
     'like FOREVER :( The Romans banished me here as punishment for my belief in Jesus. Something about Christianity ' +
     'posing a subversive threat blah blah blah to the Roman order. I guess we\'re seen as an alternative order and \"deep ' +
-    'state\" to the Romans since we refuse to worship the obviously unholy emperor. Just drive my point home, Patmos ' +
+    'state\" to the Romans since we refuse to worship the obviously unholy emperor. Just to drive my point home, Patmos ' +
     'SUCKS. There\'s absolutely no one here, just a bunch of water and super loud birds. See for yourself:');
+    sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=6&scale=false&size=' +
+    '600x600&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7CPatmos,+Greece');
     sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=10&scale=false&size=' +
-    '1000x1000&maptype=roadmap&format=png&visual_refresh=true');
+    '600x600&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7CPatmos,+Greece');
 }
 
 function loading(id) {
