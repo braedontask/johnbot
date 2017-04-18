@@ -228,6 +228,16 @@ function receivedPostback(event) {
         sendFile(senderID, payload);
     } else if (payload.includes('restart')) {
         startGame(senderID);
+    } else if (payload.includes('movie')) {
+        sendMovie(senderID);
+    } else if (payload.includes('song')) {
+        sendSong(senderID);
+    } else if (payload.includes('poem')) {
+        sendPoem(senderID);
+    } else if (payload.includes('meme')) {
+        sendMeme(senderID);
+    } else if (payload.includes('verse')) {
+        sendVerse(senderID);
     } else {
         sendTextMessage(senderID, payload);
     }
