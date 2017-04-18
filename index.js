@@ -56,7 +56,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // simple db for game
-var gameData = {};
+var gameData = [];
 
 // incoming events handling
 function receivedMessage(event) {
@@ -74,6 +74,7 @@ function receivedMessage(event) {
     var messageAttachments = message.attachments;
 
     if (messageText) {
+        console.log('Gets here');
         routeRequests(messageText, senderID);
     } else if (messageAttachments) {
         sendTextMessage(senderID, "Message with attachment received");
