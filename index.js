@@ -393,6 +393,8 @@ function generateFiles(id, titles, subtitles, imgs, files) {
         }
     };
 
+    loading(id);
+
     // make POST call
     callSendAPI(messageData);
 }
