@@ -194,7 +194,13 @@ function routeRequests(msg, id) {
         sendArtAnalysis(id);
     } else if (generateOr(['meme', 'fun'], m)) {
         sendMeme(id);
-    } else if (generateOr(['verse', 'read', 'text'], m)) {
+    } else if (generateOr(['movie', 'film', 'show', 'tv', 'screen'], m)) {
+        sendMovie(id);
+    } else if (generateOr(['song', 'tune', 'listen', 'music'], m)) {
+        sendSong(id);
+    } else if (generateOr(['book', 'read', 'poem', 'text'], m)) {
+        sendPoem(id);
+    } else if (generateOr(['verse', 'line'], m)) {
         sendVerse(id);
     } else if (generateOr(['joke', 'laugh'], m)) {
         sendJoke(id);
@@ -358,9 +364,6 @@ function generatePictures(id, titles, subtitles, urls, learns) {
 }
 
 function generateFiles(id, titles, subtitles, imgs, files) {
-    setTimeout(function() {
-        loading(id);
-    }, 500);
     var elements = [];
     for (var i = 0; i < titles.length; i++) {
         elements.push({
@@ -501,6 +504,7 @@ function sendArtAnalysis(id) {
         'http://joshseides.com/pdf/fourhorsemen_durer.pdf',
         'http://joshseides.com/pdf/lastjudgment_bosch.pdf',
         'http://joshseides.com/pdf/lightofworld_hunt.pdf'];
+    loading(id);
     generateFiles(id, titles, subtitles, imgs, files);
 }
 
@@ -585,6 +589,29 @@ function loading(id) {
 
     // make POST call
     callSendAPI(messageData);
+}
+
+function sendMovie(id) {
+    sendTextMessage(id, 'Even though it\'s quite blasphemous I thought it was great, modern comedic relief from my ' +
+    'boredom here on Patmos.');
+    sendVideo(id, 'https://youtu.be/Yma-g4gTwlE');
+    sendFileTemplate(id, 'https://i.ytimg.com/vi/_tHyRqhmoNI/hqdefault.jpg', 'This is the End (2013)', 'Analysis',
+    'http://joshseides.com/pdf/thisistheend.pdf');
+}
+
+function sendSong(id) {
+    sendTextMessage(id, 'I\'m a sucker for a baller guitarist. I listen to this song every night as I attempt to ' +
+    'fall asleep and prepare for trippy dreams...');
+    sendAudio(id, 'http://joshseides.com/files/mancomesaround.mp3');
+    sendFileTemplate(id, 'http://images.genius.com/95e7fa432bfce30cdf02dbc5bdaf8f8b.1000x1000x1.jpg', '\"The Man Comes ' +
+    'Around\" (2002)', 'Analysis', 'http://joshseides.com/pdf/mancomesaround_cash.pdf');
+}
+
+function sendPoem(id) {
+    sendTextMessage(id, 'I love Frost, what a great poet. Why don\'t I read books like Dante\'s Inferno or John Milton\'s ' +
+    'Paradise Lost, you ask? I do, I just love Frost more <3 See the poem here: http://www.bartleby.com/117/21.html');
+    sendFileTemplate(id, 'https://pbs.twimg.com/profile_images/71805552/frosttwitter.JPG', '\"Revelation\" (1915)',
+    'Analysis', 'http://joshseides.com/pdf/revelation_frost.pdf');
 }
 
 function sendVerse(id) {
@@ -866,6 +893,40 @@ function sendImage(id, link) {
         message: {
             attachment: {
                 type: "image",
+                payload: {url: link}
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendVideo(id, link) {
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "video",
+                payload: {url: link}
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function sendAudio(id, link) {
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "audio",
                 payload: {url: link}
             }
         }
