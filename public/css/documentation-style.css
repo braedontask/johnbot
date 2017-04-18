@@ -1,0 +1,65 @@
+@font-face {
+    font-family:"SFBold";
+    src: url("../fonts/SF-UI-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family:"SFUltralight";
+    src: url("../fonts/SF-UI-Display-Ultralight.otf") format("opentype");
+}
+
+@font-face {
+    font-family:"Roboto-Thin";
+    src: url("../fonts/Roboto-Thin.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"GothamBold";
+    src: url("../fonts/Gotham-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"Roboto-Condensed";
+    src: url("../fonts/Roboto-Condensed.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"Roboto-Medium";
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
+}
+
+.docs {
+    padding-left: 10%;
+    padding-right: 10%;
+    color: #ffffff;
+    background: #009ae1;
+}
+
+.docs h1 {
+    font-family: 'SFUltralight';
+    font-size: 70px;
+    padding: 40px 0 20px 0;
+    margin: 0 0 0 0;
+}
+
+.docs h1 {
+    font-family: 'SFBold';
+    font-size: 20px;
+    color: #000000;
+}
+
+@media all and (max-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+    .docs h1 {
+        font-size: 40px;
+    }
+}
+
+.docs p, .docs li {
+    font-family: 'Roboto-Thin';
+    font-weight: 700;
+    color: #999999
+}
+
+.docs strong, .docs b {
+    font-family: 'Roboto-Medium';
+}
