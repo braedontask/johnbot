@@ -31,8 +31,7 @@
 .docs {
     padding-left: 10%;
     padding-right: 10%;
-    color: #ffffff;
-    background: #009ae1;
+    color: #000000;
 }
 
 .docs h1 {
@@ -42,7 +41,7 @@
     margin: 0 0 0 0;
 }
 
-.docs h1 {
+.docs h2 {
     font-family: 'SFBold';
     font-size: 20px;
     color: #000000;
