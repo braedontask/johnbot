@@ -233,16 +233,6 @@ function receivedPostback(event) {
     }
 }
 
-// function getUserInfo(id) {
-//     request({
-//         uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
-//         qs: { access_token: config.access_token },
-//         method: 'GET'
-//     }, function (error, response, body) {
-//         return response;
-//     });
-// }
-
 function sendTextMessage(id, m) {
     var messageData = {
         recipient: {
@@ -258,8 +248,6 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
-    // var name = getUserInfo(id).first_name;
-    // sendTextMessage(id, 'Hey ' + name + '!');
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
@@ -393,8 +381,6 @@ function generateFiles(id, titles, subtitles, imgs, files) {
         }
     };
 
-    loading(id);
-
     // make POST call
     callSendAPI(messageData);
 }
@@ -506,7 +492,6 @@ function sendArtAnalysis(id) {
         'http://joshseides.com/pdf/fourhorsemen_durer.pdf',
         'http://joshseides.com/pdf/lastjudgment_bosch.pdf',
         'http://joshseides.com/pdf/lightofworld_hunt.pdf'];
-    loading(id);
     generateFiles(id, titles, subtitles, imgs, files);
 }
 
@@ -594,10 +579,9 @@ function loading(id) {
 }
 
 function sendMovie(id) {
-    sendTextMessage(id, 'Even though it\'s quite blasphemous I thought it was great, modern comedic relief from my ' +
-    'boredom here on Patmos.');
-    sendVideo(id, 'https://youtu.be/Yma-g4gTwlE');
-    sendFileTemplate(id, 'https://i.ytimg.com/vi/_tHyRqhmoNI/hqdefault.jpg', 'This is the End (2013)', 'Analysis',
+    sendTextMessage(id, 'Even though it\'s quite blasphemous I thought it was great comedic relief from my ' +
+    'boredom here on Patmos. See a cool clip here: https://youtu.be/Yma-g4gTwlE');
+    sendFileTemplate(id, 'https://i.ytimg.com/vi/_tHyRqhmoNI/hqdefault.jpg', 'This is the End (2013)', 'Josh\'s Analysis',
     'http://joshseides.com/pdf/thisistheend.pdf');
 }
 
@@ -606,14 +590,14 @@ function sendSong(id) {
     'fall asleep and prepare for trippy dreams...');
     sendAudio(id, 'http://joshseides.com/files/mancomesaround.mp3');
     sendFileTemplate(id, 'http://images.genius.com/95e7fa432bfce30cdf02dbc5bdaf8f8b.1000x1000x1.jpg', '\"The Man Comes ' +
-    'Around\" (2002)', 'Analysis', 'http://joshseides.com/pdf/mancomesaround_cash.pdf');
+    'Around\" (2002)', 'Josh\'s Analysis', 'http://joshseides.com/pdf/mancomesaround_cash.pdf');
 }
 
 function sendPoem(id) {
     sendTextMessage(id, 'I love Frost, what a great poet. Why don\'t I read books like Dante\'s Inferno or John Milton\'s ' +
     'Paradise Lost, you ask? I do, I just love Frost more <3 See the poem here: http://www.bartleby.com/117/21.html');
     sendFileTemplate(id, 'https://pbs.twimg.com/profile_images/71805552/frosttwitter.JPG', '\"Revelation\" (1915)',
-    'Analysis', 'http://joshseides.com/pdf/revelation_frost.pdf');
+    'Josh\'s Analysis', 'http://joshseides.com/pdf/revelation_frost.pdf');
 }
 
 function sendVerse(id) {
@@ -895,23 +879,6 @@ function sendImage(id, link) {
         message: {
             attachment: {
                 type: "image",
-                payload: {url: link}
-            }
-        }
-    };
-
-    // make POST call
-    callSendAPI(messageData);
-}
-
-function sendVideo(id, link) {
-    var messageData = {
-        recipient: {
-            id: id
-        },
-        message: {
-            attachment: {
-                type: "video",
                 payload: {url: link}
             }
         }
