@@ -180,12 +180,20 @@ function routeRequests(msg, id) {
         sendToday(id);
     } else if (generateOr(['who are you', 'name'], m)) {
         sendName(id);
-    } else if (generateOr(['about', 'bio'], m) || generateAnd(['tell', 'more'], m)) {
+    } else if (generateAnd(['about', 'book'], m) || generateOr(['Revelation', 'theme', 'analysis'], m)) {
+        sendTheme(id);
+    } else if (generateAnd(['about', 'you'], m) || generateAnd(['tell', 'more'], m) || generateOr(['bio'], m)) {
         sendAbout(id);
     } else if (generateOr(['when', 'write', 'written'], m)) {
         sendWhen(id);
     } else if (generateOr(['where', 'location', 'locate'], m)) {
         sendLocation(id);
+    } else if (generateOr(['Old Testament', 'allusion', 'reference'], m)) {
+        sendAllusions(id);
+    } else if (generateAnd(['art', 'analysis'], m)) {
+        sendArtAnalysis(id);
+    } else if (generateOr(['meme', 'fun'], m)) {
+        sendMeme(id);
     } else if (generateOr(['verse', 'read', 'text'], m)) {
         sendVerse(id);
     } else if (generateOr(['joke', 'laugh'], m)) {
@@ -329,6 +337,41 @@ function generatePictures(id, titles, subtitles, urls, learns) {
             }]
         });
     }
+
+    var messageData = {
+        recipient: {
+            id: id
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: helpers.shuffle(elements)
+                }
+            }
+        }
+    };
+
+    // make POST call
+    callSendAPI(messageData);
+}
+
+function generateFiles(id, titles, subtitles, imgs, files) {
+    var elements = [];
+    for (var i = 0; i < titles.length; i++) {
+        elements.push({
+            title: titles[i],
+            subtitle: subtitles[i],
+            image_url: imgs[i],
+            buttons: [{
+                type: "postback",
+                title: "Download File",
+                payload: files[i]
+            }]
+        });
+    }
+
     var messageData = {
         recipient: {
             id: id
@@ -379,6 +422,12 @@ function sendName(id) {
     generatePictures(id, titles, subtitles, urls, learns);
 }
 
+function sendTheme(id) {
+    sendTextMessage(id, 'Check out a plot summary here: https://en.wikipedia.org/wiki/Book_of_Revelation');
+    sendFileTemplate(id, 'https://z3news.com/w/wp-content/uploads/2015/05/four_horsemen2.jpg', 'Read an original ' +
+    'analysis by Josh', 'Thematic Ideas in Revelation', 'http://joshseides.com/pdf/theme.pdf');
+}
+
 function sendAbout(id) {
     sendTextMessage(id, 'I\'m sorry if this is long-winded but my life is pretty cool not gonna lie. I mean, ' +
     'based on the lengthy syntax and elaborate imagery in Revelation, what else would you expect? Hmm...where ' +
@@ -415,6 +464,77 @@ function sendLocation(id) {
     '600x600&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7CPatmos,+Greece');
     sendImage(id, 'https://maps.googleapis.com/maps/api/staticmap?center=Patmos,+Greece&zoom=10&scale=false&size=' +
     '600x600&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7CPatmos,+Greece');
+}
+
+function sendAllusions(id) {
+    var allusions = ['Check out Revelation 2:20. I allude to Jezebel from 1 Kings 16:31 to symbolize human wickedness.',
+    'Read Revelation 1:5. I allude to Jesus as the \"faithful witness\" from Psalms 89:37 to develop the ' +
+    'perfection and loyalty of Christ and connect to Old Testament hymns.', 'See Revelation 2:7. I mention the \"' +
+    'tree of life\" and God\'s paradise in allusion to Genesis 2-3 to form a sense of continuity of God in that ' +
+    'Revelation reaffirms the ideas of the very first book of the Bible.', 'If you look closely, Revelation 4:6 ' +
+    'compares the glass to a \"crystal,\" echoing its use in Ezekiel 1:22. I thought it would be cool to throw the ' +
+    'reference in there since both Ezekiel and I are dope prophets.', 'In Revelation 6:16, I reference Hosea 10:8 ' +
+    'through the use of \"fall on us\" and \"hide us\" to represent the parallel fear that humans should feel toward ' +
+    'the wrath of an angry God.', 'I subtly include a reference to Daniel 7:10 in Revelation 15:2, connecting the ' +
+    '\"fiery stream\" in Daniel to the \"sea of glass mingled with fire\" in Revelation to represent the duality of ' +
+    'emotions--wielding both wrath/anger (fire) and tranquility (water)--God exhibits throughout the Bible.', 'Look ' +
+    'closely at Revelation 19:19. I allude to a similar depiction in Psalms 2:2, signifying the repeated tendency of ' +
+    'humanity to wage a futile battle against God.', 'I pose an interesting contrast in Revelation 22:10 in relation ' +
+    'to Daniel 12:4, connecting the Old and New Testaments as a continuous narrative through the commandment to Daniel ' +
+    'to \"seal the book\" until Revelation, in which the angel tells me to \"seal not the sayings,\" representing ' +
+    'the end of prophecy.'];
+    var m = allusions[Math.floor(Math.random() * allusions.length)];
+    sendTextMessage(id, m);
+}
+
+function sendArtAnalysis(id) {
+    var titles = ['Angel of the Revelation', 'The Four Horsemen', 'The Last Judgment', 'The Light of the World'];
+    var subtitles = ['William Blake (1805)', 'Albrecht Dürer (1498)', 'Hieronymus Bosch (1508)', 'William Hokman Hunt (1853)'];
+    var imgs = ['http://joshseides.com/img/memes/angeloftherevelation_williamblake_1805.jpg',
+        'http://joshseides.com/img/memes/thefourhorsemen_albrechtdurer_1498.jpg',
+        'http://joshseides.com/img/memes/thelastjudgment_hieronymusbosch_1482.jpg',
+        'http://joshseides.com/img/memes/thelightoftheworld_williamhunt_1854.jpg'];
+    var files = ['http://joshseides.com/pdf/angelofrevelation_blake.pdf',
+        'http://joshseides.com/pdf/fourhorsemen_durer.pdf',
+        'http://joshseides.com/pdf/lastjudgment_bosch.pdf',
+        'http://joshseides.com/pdf/lightofworld_hunt.pdf'];
+    generateFiles(id, titles, subtitles, imgs, files);
+}
+
+function sendMeme(id) {
+    var memes = ['http://joshseides.com/img/memes/angeloftherevelation_williamblake_1805.jpg',
+    'http://joshseides.com/img/memes/danteandvirgil_williamadolphebouguereau_1850.jpg',
+    'http://joshseides.com/img/memes/dantesinferno_gustavedore_1868.jpg',
+    'http://joshseides.com/img/memes/deathonapalehorse_williamblake_1800.jpg',
+    'http://joshseides.com/img/memes/johntheapostleonpatmos_jacopovignali_17thcentury.jpg',
+    'http://joshseides.com/img/memes/stjohnaltarpiece_hansmemling_1479.jpg',
+    'http://joshseides.com/img/memes/stjohnintheclouds_albrechtdurer_1498.jpg',
+    'http://joshseides.com/img/memes/stjohntheevangelistonpatmos_hieronymusbosch_1485.jpg',
+    'http://joshseides.com/img/memes/stmichaelarchangel_guidoreni_1636.jpg',
+    'http://joshseides.com/img/memes/thebarqueofdante_eugenedelacroix_1822.jpg',
+    'http://joshseides.com/img/memes/thedivinecomedy_sandroboticelli_1481.jpg',
+    'http://joshseides.com/img/memes/thefourandtwentyelders_williamblake_1805.jpg',
+    'http://joshseides.com/img/memes/thefourhorsemen_albrechtdurer_1498.jpg',
+    'http://joshseides.com/img/memes/thegardenofearthlydelights_hieronymusbosch_1515.jpg',
+    'http://joshseides.com/img/memes/thegreatreddragonandthewomanclothedwiththesun_williamblake_1810.jpg',
+    'http://joshseides.com/img/memes/theharvestoftheworld_jacobelloalberegno_1360.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_edwardburnejones_1896.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_fraangelico_1430.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_gustavedore_1897.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_hieronymusbosch_1482.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_lucasignorelli_1502.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_michelangelo_1541.jpg',
+    'http://joshseides.com/img/memes/thelastjudgment_petervoncornelius_1839.jpg',
+    'http://joshseides.com/img/memes/thelightoftheworld_williamhunt_1854.jpg',
+    'http://joshseides.com/img/memes/thenewjerusalem_gustavedore_1865.jpg',
+    'http://joshseides.com/img/memes/thenumberofthebestis666_williamblake_1810.jpg',
+    'http://joshseides.com/img/memes/thesevenheadeddragon_albrechtdurer_1498.jpg',
+    'http://joshseides.com/img/memes/thevisionofdeath_gustavedore_1868.jpg',
+    'http://joshseides.com/img/memes/thevisionofthelastjudgment_williamblake_1808.jpg',
+    'http://joshseides.com/img/memes/thewhoreofbabylon_williamblake_1809.jpg'];
+    var meme = memes[Math.floor(Math.random() * memes.length)];
+    sendTextMessage(id, 'See the work\'s title, author, and date in the file name.');
+    sendImage(id, meme);
 }
 
 function loading(id) {
@@ -588,7 +708,6 @@ function sendSixthQuestion(id) {
 
 function endGame(id) {
     var score = gameData[id];
-    console.log('score: ' + score);
     var results = ['I\'m so sorry...you\'ll probs be in Hell.',
     'Dude! LIT! You\'ll be chilling with me in Heaven!',
     'Hehe...I know your fate but I\'m a troll and won\'t tell you (unless you play again).',
