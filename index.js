@@ -11,6 +11,8 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(__dirname + '/public'));
+
 // webhook validation
 app.get('/webhook', function(req, res) {
     if (req.query['hub.mode'] === 'subscribe' &&
@@ -25,7 +27,7 @@ app.get('/webhook', function(req, res) {
 
 // display the web page
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile('index');
 });
 
 // message processing
