@@ -32,6 +32,14 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/documentation', function(req, res) {
+    res.render('documentation');
+});
+
+app.get('/process', function(req, res) {
+    res.render('process');
+});
+
 // message processing
 app.post('/webhook', function (req, res) {
     var data = req.body;

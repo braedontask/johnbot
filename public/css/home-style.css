@@ -40,12 +40,12 @@ div.container {
 
 
 .fa-circle {
-    color: #ff6600;
+    color: #ba1616;
 }
 
 .btn {
-    background: #ff6600;
-    border: #ff6600;
+    background: #ba1616;
+    border: #ba1616;
 }
 
 .btn:hover {
@@ -82,7 +82,7 @@ div.container {
     padding-right: 10%;
     background-image: url('../img/blurred-splash.png');
     background-size: 100%;
-    border-bottom: 5px solid #ff6600;
+    border-bottom: 5px solid #ba1616;
 }
 
 .intro-screen h1 {
@@ -127,7 +127,7 @@ div.container {
 #about .timeline .timeline-heading h3 {
     font-family: 'GothamBold';
     font-size: 2.5vw;
-    color: #ff6600;
+    color: #ba1616;
 }
 
 #about .timeline .timeline-heading h4 {
@@ -164,8 +164,8 @@ div.container {
 }
 
 #about .timeline .timeline-button .btn:hover {
-    background: #ff6600;
-    border: #ff6600;
+    background: #ba1616;
+    border: #ba1616;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
@@ -234,7 +234,7 @@ div.container {
   height: 80px;
   position: absolute;
   z-index: 100;
-  background-color: #ff6600;
+  background-color: #ba1616;
   color: white;
   border-radius: 100%;
   border: 7px solid #f1f1f1;
@@ -282,7 +282,7 @@ div.container {
     padding-right: 10%;
     padding-bottom: 3%;
     color: #ffffff;
-    background: #ff6600;
+    background: #ba1616;
 }
 
 .speech-video h1 {
@@ -440,7 +440,7 @@ div.container {
 
     .intro-screen .summary-info h3 {
         padding: 1% 1% 1% 1%;
-        background: #ff6600;
+        background: #ba1616;
         border-radius: 6px;
         font-size: 25px;
     }
