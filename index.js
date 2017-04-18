@@ -133,7 +133,7 @@ function routeRequests(msg, id) {
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
     } else if (generateOr(['0'], m)) {
-        gameUpdate(id, 10);
+        //gameUpdate(id, 10);
         sendSecondQuestion(id);
     } else {
         sendErrorMessage(id);
