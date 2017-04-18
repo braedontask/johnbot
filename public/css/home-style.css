@@ -88,6 +88,7 @@ div.container {
     border-bottom: 3px solid #ba1616;
     color: #ba1616;
     text-align: center;
+    margin-right: 10%;
 }
 
 #about {
@@ -105,7 +106,6 @@ div.container {
     font-family: 'GothamBold';
     font-size: 2.5vw;
     color: #ba1616;
-    margin-right: 10%;
 }
 
 #about .timeline .timeline-heading h4 {
@@ -575,12 +575,16 @@ div.container {
 }
 
 .code {
-    height: 60%;
-    width: 60%;
+    height: 95%;
+    width: 95%;
     display: block;
     margin: auto;
 }
 
 .code-caption {
     text-align: center;
+}
+
+.access {
+    background: #f2c31a;
 }
