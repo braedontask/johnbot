@@ -550,7 +550,6 @@ function sendJoke(id) {
 
 function startGame(id) {
     gameData[id] = 0.0;
-    sendTextMessage(id, 'Score is: ' + gameData[id]);
     var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1'},
     {title: '3 to 5', payload: '2'}, {title: 'all of them', payload: '3'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
@@ -723,7 +722,7 @@ function sendChoices(id, prompt, choices) {
     for (var i = 0; i < choices.length; i++) {
         data.push({
             content_type: 'text',
-            title: choices[i].title,
+            title: 'Answer: ' + choices[i].title,
             payload: choices[i].payload
         });
     }
@@ -732,7 +731,7 @@ function sendChoices(id, prompt, choices) {
             id: id
         },
         message: {
-            text: 'Answer: ' + prompt,
+            text: prompt,
             quick_replies: data
         }
     };
