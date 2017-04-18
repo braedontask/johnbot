@@ -80,7 +80,7 @@ div.container {
 .intro-screen {
     padding-left: 10%;
     padding-right: 10%;
-    background-image: url('../img/blurred-splash.png');
+    background-image: url('../img/background.png');
     background-size: 100%;
     border-bottom: 5px solid #ba1616;
 }
@@ -578,6 +578,11 @@ div.container {
     border: #ffffff;
     border-radius: 100%;
     padding: 5px 10px 5px 10px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .social-media .social-btn:hover {
