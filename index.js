@@ -163,7 +163,7 @@ function routeRequests(msg, id) {
         } else if (generateOr(['Revelation'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5)));
             endGame(id);
-        } else {
+        } else if (generateOr(['Esther'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             endGame(id);
         }
