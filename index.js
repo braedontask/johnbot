@@ -551,8 +551,8 @@ function sendJoke(id) {
 
 function startGame(id) {
     gameData[id] = 0.0;
-    var data = [{title: '> 0', payload: '0'}, {title: '> 1 or 2', payload: '1 or 2'},
-    {title: '> 3 to 5', payload: '3 to 5'}, {title: '> all of them', payload: 'all of them'}];
+    var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1 or 2'},
+    {title: '3 to 5', payload: '3 to 5'}, {title: 'all of them', payload: 'all of them'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
