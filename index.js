@@ -119,10 +119,10 @@ function routeRequests(msg, id) {
         } else if (generateOr(['3 to 5'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 3));
             sendSecondQuestion(id);
-        } else if (generateOr(['all of them'], m)) {
+        } else if (generateOr(['all'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5)));
             sendSecondQuestion(id);
-        } else if (generateOr(['john (me)'], m)) {
+        } else if (generateOr(['john'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 4));
             sendThirdQuestion(id);
         } else if (generateOr(['matthew'], m)) {
@@ -131,13 +131,13 @@ function routeRequests(msg, id) {
         } else if (generateOr(['judas'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) - 3));
             sendThirdQuestion(id);
-        } else if (generateOr(['they don\'t talk.'], m)) {
+        } else if (generateOr(['lame'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 2));
             sendFourthQuestion(id);
-        } else if (generateOr(['\"why you gotta play me like that?\"'], m)) {
+        } else if (generateOr(['noob'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             sendFourthQuestion(id);
-        } else if (generateOr(['\"don\'t come back. ever.\"'], m)) {
+        } else if (generateOr(['damnation'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
             sendFourthQuestion(id);
         } else if (generateOr(['cain'], m)) {
@@ -149,13 +149,13 @@ function routeRequests(msg, id) {
         } else if (generateOr(['delilah'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
             sendFifthQuestion(id);
-        } else if (generateOr(['it\'s gonna be a lit party!'], m)) {
+        } else if (generateOr(['lit'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 10));
             sendSixthQuestion(id);
-        } else if (generateOr(['eh.'], m)) {
+        } else if (generateOr(['eh'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 1));
             sendSixthQuestion(id);
-        } else if (generateOr(['you tell me.'], m)) {
+        } else if (generateOr(['you tell'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             sendSixthQuestion(id);
         } else if (generateOr(['psalms'], m)) {
@@ -566,10 +566,8 @@ function sendSecondQuestion(id) {
 }
 
 function sendThirdQuestion(id) {
-    var data = [{title: 'They don\'t talk.', payload: 'They don\'t talk.'},
-    {title: '\"Why you gotta play me like that?\"', payload: '\"Why you gotta play me like that?\"'},
-    {title: '\"Don\'t come back. Ever.\"', payload: '\"Don\'t come back. Ever.\"'}];
-    sendChoices(id, 'What is God\'s most frequent comment to Satan?', data);
+    var data = [{title: 'lame', payload: 'lame'}, {title: 'noob', payload: 'noob'}, {title: 'damnation', payload: 'damnation'}];
+    sendChoices(id, 'What is God\'s most frequent word to Satan?', data);
 }
 
 function sendFourthQuestion(id) {
@@ -578,7 +576,7 @@ function sendFourthQuestion(id) {
 }
 
 function sendFifthQuestion(id) {
-    var data = [{title: 'It\'s gonna be a LIT party!', payload: 'It\'s gonna be a LIT party!'}, {title: 'Eh.', payload: 'Eh.'},
+    var data = [{title: 'LIT partytime!', payload: 'LIT partytime!'}, {title: 'Eh.', payload: 'Eh.'},
     {title: 'You tell me.', payload: 'You tell me.'}];
     sendChoices(id, 'How do you feel about the afterlife?', data);
 }
