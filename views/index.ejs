@@ -32,6 +32,27 @@
 
 <body>
 
+<script>
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: "APP_ID",
+            xfbml: true,
+            version: "v2.6"
+        });
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
 <!-- Nav Menu -->
 <div id="header" class="nav-header">
     <div class="container">
@@ -51,28 +72,30 @@
 <div class="space"></div>
 
 <div class="social-media">
-    <h1>Social Media + Email</h1>
+    <h1>Access The John Bot</h1>
     <div class="row">
         <div class="col-md-4">
-            <i class="fa fa-5x fa-linkedin"></i>
+            <i class="fa fa-5x fa-comment"></i>
             <hr>
-            <h2>LinkedIn</h2>
-            <a href="http://www.linkedin.com/in/josh-seides-852170ab" class="btn btn-primary social-btn pull-right" target="_blank"><i class="fa fa-arrow-right"></i></a>
+            <h2>Messenger App</h2>
+            <div class="fb-send-to-messenger"
+                 messenger_app_id="1407796272604057"
+                 page_id="158788994644801"
+                 data-ref="thejohnbot"
+                 color="blue"
+                 size="standard">
+            </div>
             <p>Josh Seides</p>
         </div>
         <div class="col-md-4">
-            <i class="fa fa-5x fa-twitter"></i>
+            <i class="fa fa-5x fa-facebook"></i>
             <hr>
-            <h2>Twitter</h2>
-            <a href="http://twitter.com/technocademy" class="btn btn-primary social-btn pull-right" target="_blank"><i class="fa fa-arrow-right"></i></a>
-            <p>@Technocademy</p>
+            <h2>Facebook Page</h2>
+            <a href="https://www.facebook.com/johnbot" class="btn btn-primary social-btn pull-right" target="_blank"><i class="fa fa-arrow-right"></i></a>
+            <p>@johnbot</p>
         </div>
         <div class="col-md-4">
-            <i class="fa fa-5x fa-envelope"></i>
-            <hr>
-            <h2>Email</h2>
-            <a href="mailto:josh@technocademy.org" class="btn btn-primary social-btn pull-right" target="_blank"><i class="fa fa-arrow-right"></i></a>
-            <a href="mailto:josh@technocademy.org" class="email" target="_blank"><p>josh@technocademy.org</p></a>
+            <img src="img/code.png">
         </div>
     </div>
 </div>

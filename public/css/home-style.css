@@ -551,7 +551,7 @@ div.container {
     padding-right: 10%;
     padding-bottom: 3%;
     color: #ffffff;
-    background: #ff6600;
+    background: #009ae1;
 }
 
 .social-media h1 {
@@ -573,7 +573,7 @@ div.container {
 }
 
 .social-media .social-btn {
-    color: #ff6600;
+    color: #ba1616;
     background: #ffffff;
     border: #ffffff;
     border-radius: 100%;
@@ -582,8 +582,8 @@ div.container {
 
 .social-media .social-btn:hover {
     color: #ffffff;
-    background: #009ae1;
-    border: #009ae1;
+    background: #ba1616;
+    border: #ba1616;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
