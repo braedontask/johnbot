@@ -133,7 +133,7 @@ function routeRequests(msg, id) {
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
     } else if (generateOr(['0'], m)) {
-        //gameUpdate(id, 10);
+        gameUpdate(id, 10);
         sendSecondQuestion(id);
     } else {
         sendErrorMessage(id);
@@ -495,14 +495,20 @@ function sendJoke(id) {
 function startGame(id) {
     gameData[id] = 0.0;
     sendTextMessage(id, 'Score is: ' + gameData[id]);
-    var data = [{title: '0', payload: 'Question1--0'}, {title: '1 or 2', payload: 'Question1--1'},
-    {title: '3 to 5', payload: 'Question1--2'}, {title: 'all of them', payload: 'Question1--3'}];
+    var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1'},
+    {title: '3 to 5', payload: '2'}, {title: 'all of them', payload: '3'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
 function gameUpdate(id, change) {
     gameData[id] += change;
     sendTextMessage(id, 'Score is: ' + gameData[id]);
+}
+
+function sendSecondQuestion(id) {
+    sendTextMessage(id, 'Score is: ' + gameData[id]);
+    var data = [{title: 'John (me)', payload: '0'}, {title: 'Matthew', payload: '1'}];
+    sendChoices(id, 'Which disciple do you like better', data);
 }
 
 function sendErrorMessage(id) {
