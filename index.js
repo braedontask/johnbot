@@ -190,7 +190,7 @@ function routeRequests(msg, id) {
         sendLocation(id);
     } else if (generateOr(['old testament', 'allusion', 'reference'], m)) {
         sendAllusions(id);
-    } else if (generateAnd(['art', 'analysis'], m)) {
+    } else if (generateAnd(['meme', 'analysis'], m) || generateOr(['art'], m)) {
         sendArtAnalysis(id);
     } else if (generateOr(['meme', 'fun'], m)) {
         sendMeme(id);
@@ -564,7 +564,9 @@ function sendMeme(id) {
     'The Whore of Babylon, William Blake (1809)'];
     var i = Math.floor(Math.random() * memes.length);
     sendTextMessage(id, info[i]);
-    loading(id);
+    setTimeout(function() {
+        loading(id);
+    }, 500);
     setTimeout(function() {
         sendImage(id, memes[i]);
     }, 2500);
