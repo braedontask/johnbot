@@ -545,3 +545,48 @@ div.container {
   text-decoration: none;
   background-color: #ecf0f1;
 }
+
+.social-media {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 3%;
+    color: #ffffff;
+    background: #ff6600;
+}
+
+.social-media h1 {
+    font-family: 'SFUltralight';
+    font-size: 70px;
+    padding: 40px 0 20px 0;
+    margin: 0 0 0 0;
+}
+
+@media all and (max-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+    .social-media h1 {
+        font-size: 40px;
+    }
+}
+
+.social-media p {
+    font-family: 'Roboto-Thin';
+    font-weight: 700;
+}
+
+.social-media .social-btn {
+    color: #ff6600;
+    background: #ffffff;
+    border: #ffffff;
+    border-radius: 100%;
+    padding: 5px 10px 5px 10px;
+}
+
+.social-media .social-btn:hover {
+    color: #ffffff;
+    background: #009ae1;
+    border: #009ae1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
