@@ -180,7 +180,7 @@ function routeRequests(msg, id) {
         sendToday(id);
     } else if (generateOr(['who are you', 'name'], m)) {
         sendName(id);
-    } else if (generateAnd(['about', 'book'], m) || generateOr(['Revelation', 'theme', 'analysis'], m)) {
+    } else if (generateAnd(['about', 'book'], m) || generateOr(['revelation', 'theme', 'analysis'], m)) {
         sendTheme(id);
     } else if (generateAnd(['about', 'you'], m) || generateAnd(['tell', 'more'], m) || generateOr(['bio'], m)) {
         sendAbout(id);
@@ -188,7 +188,7 @@ function routeRequests(msg, id) {
         sendWhen(id);
     } else if (generateOr(['where', 'location', 'locate'], m)) {
         sendLocation(id);
-    } else if (generateOr(['Old Testament', 'allusion', 'reference'], m)) {
+    } else if (generateOr(['old testament', 'allusion', 'reference'], m)) {
         sendAllusions(id);
     } else if (generateAnd(['art', 'analysis'], m)) {
         sendArtAnalysis(id);
@@ -502,6 +502,7 @@ function sendArtAnalysis(id) {
 }
 
 function sendMeme(id) {
+    sendTextMessage(id, 'See the work\'s title, author, and date in the file name.');
     var memes = ['http://joshseides.com/img/memes/angeloftherevelation_williamblake_1805.jpg',
     'http://joshseides.com/img/memes/danteandvirgil_williamadolphebouguereau_1850.jpg',
     'http://joshseides.com/img/memes/dantesinferno_gustavedore_1868.jpg',
@@ -532,9 +533,40 @@ function sendMeme(id) {
     'http://joshseides.com/img/memes/thevisionofdeath_gustavedore_1868.jpg',
     'http://joshseides.com/img/memes/thevisionofthelastjudgment_williamblake_1808.jpg',
     'http://joshseides.com/img/memes/thewhoreofbabylon_williamblake_1809.jpg'];
-    var meme = memes[Math.floor(Math.random() * memes.length)];
-    sendTextMessage(id, 'See the work\'s title, author, and date in the file name.');
-    sendImage(id, meme);
+    var info = ['Angel of the Revelation, William Blake (1805)',
+    'Dante and Virgil, William Adolphe-Bougereau (1850)',
+    'Dante\'s Inferno, Gustave Doré (1868)',
+    'Death on a Pale Horse, William Blake (1800)',
+    'John the Apostle on Patmos, Jacopo Vignali (17th century)',
+    'St. John Altarpiece, Hans Memling (1479)',
+    'St. John in the Clouds, Albrecht Dürer (1498)',
+    'St. John the Evangelist on Patmos, Hieronymus Bosch (1485)',
+    'St. Michael Archangel, Guido Reni (1636)',
+    'The Barque of Dante, Eugène Delacroix (1822)',
+    'The Divine Comedy, Sandro Boticelli (1481)',
+    'The Four and Twenty Elders, William Blake (1805)',
+    'The Four Horsemen, Albrecht Dürer (1498)',
+    'The Garden of Earthly Delights, Hieronymus Bosch (1515)',
+    'The Great Red Dragon and the Woman Clothed with the Sun, William Blake (1810)',
+    'The Harvest of the World, Jacobello Alberegno (1360)',
+    'The Last Judgment, Edward Burne-Jones (1896)',
+    'The Last Judgment, Fra Angelico (1430)',
+    'The Last Judgment, Gustave Doré (1897)',
+    'The Last Judgment, Hieronymus Bosch (1482)',
+    'The Last Judgment, Lucas Signorelli (1502)',
+    'The Last Judgment, Michelangelo (1541)',
+    'The Last Judgment, Peter von Cornelius (1839)',
+    'The Light of the World, William Holman Hunt (1854)',
+    'The New Jerusalem, Gustave Doré (1865)',
+    'The Number of the Beast is 666, William Blake (1810)',
+    'The Seven-Headed Dragon, Albrecht Dürer (1498)',
+    'The Vision of Death, Gustave Doré (1868)',
+    'The Vision of the Last Judgment, William Blake (1808)',
+    'The Whore of Babylon, William Blake (1809)'];
+    var i = Math.floor(Math.random() * memes.length);
+    sendTextMessage(id, info[i]);
+    loading(id);
+    sendImage(id, memes[i]);
 }
 
 function loading(id) {
