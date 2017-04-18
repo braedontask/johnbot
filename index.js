@@ -108,7 +108,7 @@ function generateAnd(lst, query) {
 
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
-    if (generateOr(['Answer:'], m)) {
+    if (generateOr(['answer'], m)) {
         if (generateOr(['0'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
             sendSecondQuestion(id);
@@ -722,8 +722,8 @@ function sendChoices(id, prompt, choices) {
     for (var i = 0; i < choices.length; i++) {
         data.push({
             content_type: 'text',
-            title: choices[i].title,
-            payload: 'Answer: ' + choices[i].payload
+            title: 'Answer: ' + choices[i].title,
+            payload: choices[i].payload
         });
     }
     var messageData = {
