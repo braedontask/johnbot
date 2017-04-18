@@ -133,7 +133,8 @@ function routeRequests(msg, id) {
     } else if (generateOr(['game', 'play'], m) || generateAnd(['heaven', 'hell'], m)) {
         startGame(id);
     } else if (generateOr(['0'], m)) {
-        sendTextMessage(id, 'received from normal text');
+        gameUpdate(id, 10);
+        sendSecondQuestion(id);
     } else {
         sendErrorMessage(id);
     }
@@ -493,9 +494,15 @@ function sendJoke(id) {
 
 function startGame(id) {
     gameData[id] = 0.0;
+    sendTextMessage(id, 'Score is: ' + gameData[id]);
     var data = [{title: '0', payload: 'Question1--0'}, {title: '1 or 2', payload: 'Question1--1'},
     {title: '3 to 5', payload: 'Question1--2'}, {title: 'all of them', payload: 'Question1--3'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
+}
+
+function gameUpdate(id, change) {
+    gameData[id] += change;
+    sendTextMessage(id, 'Score is: ' + gameData[id]);
 }
 
 function sendErrorMessage(id) {
