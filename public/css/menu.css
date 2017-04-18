@@ -1,0 +1,272 @@
+@font-face {
+    font-family:"SweetSensations";
+    src: url("../fonts/SweetSensations.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"GothamBold";
+    src: url("../fonts/Gotham-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"GothamBook";
+    src: url("../fonts/Gotham-Book.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"GothamLight";
+    src: url("../fonts/Gotham-Light.ttf") format("truetype");
+}
+
+.container #cssmenu,
+.container #cssmenu ul,
+.container #cssmenu ul li,
+.container #cssmenu ul li a,
+.container #cssmenu #menu-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container #cssmenu #menu-button {
+  display: none;
+}
+
+.nav-header .container #cssmenu {
+  width: 100%;
+  left: 0;
+  line-height: 1;
+  background: #ff6600;
+  height: 92px;
+  border-bottom: 5px solid #ffffff;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
+
+.nav-header.shrink .container #cssmenu {
+  height: 60px;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
+
+.container #cssmenu a {
+  font-family: 'GothamBold', sans-serif;
+  font-weight: 400;
+}
+
+.container #menu-line {
+  position: relative;
+  margin: 0;
+  height: 5px;
+  background: #ffffff;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.container #cssmenu > ul > li {
+  float: left;
+}
+
+.nav-header .container #cssmenu > ul > li > a {
+  margin-top: 27px;
+  margin-bottom: 27px;
+  margin-left: 17px;
+  margin-right: 17px;
+  padding: 3px 3px 3px 3px;
+  border-radius: 6px;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'GothamBold';
+  color: #ffffff;
+  -webkit-transition: all 1.0s ease;
+  -moz-transition: all 1.0s ease;
+  -ms-transition: all 1.0s ease;
+  -o-transition: all 1.0s ease;
+  transition: all 1.0s ease;
+}
+
+.nav-header.shrink .container #cssmenu > ul > li > a {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 17px;
+  margin-right: 17px;
+  padding: 3px 3px 3px 3px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'GothamLight';
+  -webkit-transition: all 1.0s ease;
+  -moz-transition: all 1.0s ease;
+  -ms-transition: all 1.0s ease;
+  -o-transition: all 1.0s ease;
+  transition: all 1.0s ease;
+}
+
+.nav-header .container #cssmenu > ul > li.header-nav > a {
+  background: #ff6600 !important;
+  color: #ffffff !important;
+}
+
+.container #cssmenu > ul > li.active > a {
+  background: #ffffff;
+  border-radius: 6px;
+  color: #ff6600 !important;
+}
+
+.container #cssmenu > ul > li:hover > a {
+  background: #ffffff;
+  border-radius: 6px;
+  color: #ff6600 !important;
+}
+
+@media all and (max-width: 1175px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+  .container #cssmenu {
+    width: 100%;
+  }
+
+  .container #cssmenu ul {
+    width: 100%;
+    background: #ff6600;
+    display: none;
+  }
+
+  .container #cssmenu ul > li {
+    background: #ff6600;
+  }
+
+  .container #cssmenu.align-center > ul,
+  .container #cssmenu.align-right ul ul {
+    text-align: left;
+  }
+
+  .container #cssmenu ul li,
+  .container #cssmenu ul ul li,
+  .container #cssmenu ul li:hover > ul > li {
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #ffffff;
+  }
+
+  .container #cssmenu ul li:last-child,
+  .container #cssmenu ul ul li:last-child,
+  .container #cssmenu ul li:hover > ul > li:last-child {
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .container #cssmenu ul li a,
+  .container #cssmenu ul ul li a {
+    width: 100%;
+    background: #ff6600;
+  }
+
+  #cssmenu > ul > li,
+  #cssmenu.align-center > ul > li,
+  #cssmenu.align-right > ul > li {
+    float: none;
+    display: inline-block;
+  }
+
+  .container #menu-line {
+    display: none;
+  }
+
+  .container #cssmenu #menu-button {
+    display: block;
+    padding: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .container #cssmenu #menu-button::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 2px;
+    background: #ffffff;
+  }
+  
+  .container #cssmenu #menu-button::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 7px;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+  }
+}
+
+.nav-header .header-nav a {
+  font-family: 'SweetSensations' !important;
+  background: #ff6600 !important;
+  color: #ffffff !important;
+  font-size: 45px !important;
+  text-transform: capitalize !important;
+  margin: 14.5px 17px 14.5px 17px !important;
+  padding: 3px 3px 3px 3px !important;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
+
+.nav-header.shrink .header-nav a {
+  font-size: 30px !important;
+  margin: 6.5px 17px 6.5px 17px !important;
+  padding: 3px 3px 3px 3px !important;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
+
+.nav-header .menu-pic {
+  display: inline;
+  float: right;
+  height: 70px;
+  width: 70px;
+  margin-top: 4px;
+  margin-right: 3%;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
+
+.nav-header.shrink .menu-pic {
+  height: 45px;
+  width: 45px;
+  margin-top: 0px;
+  margin-right: 3%;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+}
