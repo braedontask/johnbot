@@ -573,9 +573,9 @@ div.container {
 }
 
 .social-media .social-btn {
-    color: #f2c31a;
-    background: #f2c31a;
-    border: #f2c31a;
+    color: #ba1616;
+    background: #ffffff;
+    border: #ffffff;
     border-radius: 100%;
     padding: 5px 10px 5px 10px;
 }
@@ -595,4 +595,9 @@ div.container {
     height: 50%;
     width: 50%;
     display: block;
+    margin: auto;
+}
+
+.code-caption {
+    text-align: center;
 }
