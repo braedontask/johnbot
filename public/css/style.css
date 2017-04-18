@@ -19,7 +19,7 @@
     margin: 20px 3px 0 3px;
     line-height: 38px;
     color: #ffffff;
-    background: #ff6600;
+    background: #ba1616;
     border-radius: 100%;
     -webkit-transition: all 1.0s;
     -moz-transition: all 1.0s;
@@ -46,7 +46,7 @@ a.buy-btn.pull-right:hover {
     background: #ffffff;
     border: #ffffff;
     border-radius: 100%;
-    color: #ff6600;
+    color: #ba1616;
     -webkit-transition: all 0.15s;
     -moz-transition: all 0.15s;
     -ms-transition: all 0.15s;

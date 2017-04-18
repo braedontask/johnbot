@@ -43,7 +43,7 @@
   width: 100%;
   left: 0;
   line-height: 1;
-  background: #ff6600;
+  background: #ba1616;
   height: 92px;
   border-bottom: 5px solid #ffffff;
   -webkit-transition: all 1.0s;
@@ -119,20 +119,20 @@
 }
 
 .nav-header .container #cssmenu > ul > li.header-nav > a {
-  background: #ff6600 !important;
+  background: #ba1616 !important;
   color: #ffffff !important;
 }
 
 .container #cssmenu > ul > li.active > a {
   background: #ffffff;
   border-radius: 6px;
-  color: #ff6600 !important;
+  color: #ba1616 !important;
 }
 
 .container #cssmenu > ul > li:hover > a {
   background: #ffffff;
   border-radius: 6px;
-  color: #ff6600 !important;
+  color: #ba1616 !important;
 }
 
 @media all and (max-width: 1175px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
@@ -142,12 +142,12 @@
 
   .container #cssmenu ul {
     width: 100%;
-    background: #ff6600;
+    background: #ba1616;
     display: none;
   }
 
   .container #cssmenu ul > li {
-    background: #ff6600;
+    background: #ba1616;
   }
 
   .container #cssmenu.align-center > ul,
@@ -172,7 +172,7 @@
   .container #cssmenu ul li a,
   .container #cssmenu ul ul li a {
     width: 100%;
-    background: #ff6600;
+    background: #ba1616;
   }
 
   #cssmenu > ul > li,
@@ -221,7 +221,7 @@
 
 .nav-header .header-nav a {
   font-family: 'SweetSensations' !important;
-  background: #ff6600 !important;
+  background: #ba1616 !important;
   color: #ffffff !important;
   font-size: 45px !important;
   text-transform: capitalize !important;
