@@ -358,6 +358,9 @@ function generatePictures(id, titles, subtitles, urls, learns) {
 }
 
 function generateFiles(id, titles, subtitles, imgs, files) {
+    setTimeout(function() {
+        loading(id);
+    }, 500);
     var elements = [];
     for (var i = 0; i < titles.length; i++) {
         elements.push({
