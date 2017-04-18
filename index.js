@@ -8,6 +8,8 @@ const helpers = require('./helpers');
 
 var app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,7 +29,7 @@ app.get('/webhook', function(req, res) {
 
 // display the web page
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index'));
+    res.render('index');
 });
 
 // message processing
