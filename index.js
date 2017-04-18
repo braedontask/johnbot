@@ -180,7 +180,7 @@ function routeRequests(msg, id) {
         sendToday(id);
     } else if (generateOr(['who are you', 'name'], m)) {
         sendName(id);
-    } else if (generateAnd(['about', 'book'], m) || generateOr(['revelation', 'theme', 'analysis'], m)) {
+    } else if (generateAnd(['about', 'book'], m) || generateOr(['revelation', 'theme'], m)) {
         sendTheme(id);
     } else if (generateAnd(['about', 'you'], m) || generateAnd(['tell', 'more'], m) || generateOr(['bio'], m)) {
         sendAbout(id);
