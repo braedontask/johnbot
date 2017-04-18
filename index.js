@@ -108,7 +108,7 @@ function generateAnd(lst, query) {
 
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
-    if (generateOr(['ans'], m)) {
+    if (generateOr(['answer'], m)) {
         console.log('Here: ' + m);
         if (generateOr(['0'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
@@ -602,17 +602,17 @@ function endGame(id) {
     'I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...'];
     if (score > 15) {
         sendTextMessage(id, results[6]);
-    } else if (score > 20) {
+    } else if (score > 10) {
         sendTextMessage(id, results[5]);
-    } else if (score > 25) {
+    } else if (score > 15) {
         sendTextMessage(id, results[4]);
-    } else if (score > 30) {
+    } else if (score > 20) {
         sendTextMessage(id, results[3]);
-    } else if (score > 35) {
+    } else if (score > 25) {
         sendTextMessage(id, results[8]);
-    } else if (score > 37) {
+    } else if (score > 27) {
         sendTextMessage(id, results[1]);
-    } else if (score > 40) {
+    } else if (score > 32) {
         sendTextMessage(id, results[7]);
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
@@ -722,7 +722,7 @@ function sendChoices(id, prompt, choices) {
     for (var i = 0; i < choices.length; i++) {
         data.push({
             content_type: 'text',
-            title: 'Ans: ' + choices[i].title,
+            title: 'Answer: ' + choices[i].title,
             payload: choices[i].payload
         });
     }
