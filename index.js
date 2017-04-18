@@ -212,8 +212,8 @@ function receivedPostback(event) {
     // confirmation of postback
     if (payload.includes('http') || payload.includes('./')) {
         sendFile(senderID, payload);
-    } else if (payload.includes('0')) {
-        sendTextMessage(senderID, 'received from postback');
+    } else if (payload.includes('restart')) {
+        startGame(senderID);
     } else {
         sendTextMessage(senderID, payload);
     }
@@ -618,7 +618,7 @@ function endGame(id) {
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
     }
-    sendButton(id, 'Play again!', 'Am I going to Heaven or Hell...again?');
+    sendButton(id, 'Play again!', 'restart');
 }
 
 function sendErrorMessage(id) {
@@ -639,7 +639,7 @@ function sendButton(id, title, payload) {
                 payload: {
                     template_type: "generic",
                     elements: [{
-                        title: "Follow-up!",
+                        title: "Follow Up",
                         buttons: [{
                             type: "postback",
                             title: title,
