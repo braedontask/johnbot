@@ -590,3 +590,8 @@ div.container {
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
+
+.code {
+    height: 50%;
+    width: 50%;
+}
