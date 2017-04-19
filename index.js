@@ -121,14 +121,13 @@ function generateAnd(lst, query) {
 function routeRequests(msg, id) {
     var m = msg.toLowerCase();
     if (generateOr(['answer'], m)) {
-        console.log('Here: ' + m);
-        if (generateOr(['0'], m)) {
+        if (generateOr(['none'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
             sendSecondQuestion(id);
-        } else if (generateOr(['1 or 2'], m)) {
+        } else if (generateOr(['1 to 4'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 5));
             sendSecondQuestion(id);
-        } else if (generateOr(['3 to 5'], m)) {
+        } else if (generateOr(['5 to 9'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 3));
             sendSecondQuestion(id);
         } else if (generateOr(['all'], m)) {
@@ -270,12 +269,13 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
+    getUserData(id);
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
-    'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Did you know ' +
-    'some people say I\'m the only apostle who died a natural death? 3:)', 'How is Patmos you ask? Not good, I can ' +
+    'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Wazzup! Did you know ' +
+    'some people say I\'m the only apostle who died a natural death? 3:)', 'Hey! Want to know what Patmos is like? Not good, I can ' +
     'tell you that. Literally just watch birds fly over me and those pagans offshore have fun while I sit and ' +
     'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'Hello! It\'s ' +
-    'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
+    'a beautiful day out here in Patmos...said no one ever :|', 'Yo! Why do I have an obsession with numbers you ask? ' +
     'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
     'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Hi! Here\'s some ' +
     'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
@@ -745,8 +745,8 @@ function sendJoke(id) {
 
 function startGame(id) {
     gameData[id] = 0.0;
-    var data = [{title: '0', payload: '0'}, {title: '1 or 2', payload: '1 or 2'},
-    {title: '3 to 5', payload: '3 to 5'}, {title: 'all of them', payload: 'all of them'}];
+    var data = [{title: 'None!', payload: 'None!'}, {title: '1 to 4', payload: '1 to 4'},
+    {title: '5 to 9', payload: '5 to 9'}, {title: 'all of them', payload: 'all of them'}];
     sendChoices(id, 'How many of the Ten Commandments have you violated in the last week?', data);
 }
 
@@ -800,12 +800,12 @@ function endGame(id) {
     } else if (score < 15) {
         sendTextMessage(id, results[4]);
     } else if (score < 20) {
-        sendTextMessage(id, results[3]);
+        sendTextMessage(id, results[11]);
     } else if (score < 25) {
         sendTextMessage(id, results[8]);
-    } else if (score < 27) {
+    } else if (score < 30) {
         sendTextMessage(id, results[1]);
-    } else if (score < 32) {
+    } else if (score < 35) {
         sendTextMessage(id, results[7]);
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
@@ -964,6 +964,22 @@ function callSendAPI(messageData) {
 
             console.log("Successfully sent generic message with id %s to recipient %s",
                 messageId, id);
+        } else {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        }
+    });
+}
+
+function getUserData(id) {
+    request({
+        uri: 'https://graph.facebook.com/v2.9/' + id,
+        qs: { access_token: config.access_token },
+        method: 'GET'
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            sendTextMessage(id, 'Hey, ' + body.first_name + '! How you doing?');
         } else {
             console.error("Unable to send message.");
             console.error(response);
