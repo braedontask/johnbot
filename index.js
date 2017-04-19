@@ -935,6 +935,9 @@ function sendChoices(id, prompt, choices) {
             payload: choices[i].payload
         });
     }
+
+    data = generateOr(['Commandments'], prompt) ? data : helpers.shuffle(data);
+    
     var messageData = {
         recipient: {
             id: id
