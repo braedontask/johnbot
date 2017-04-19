@@ -974,7 +974,7 @@ function callSendAPI(messageData) {
     });
 }
 
-function getUserData(messageData) {
+function getUserData(id) {
     request({
         uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
         qs: { access_token: config.access_token },
