@@ -976,8 +976,7 @@ function callSendAPI(messageData) {
 
 function getUserData(id) {
     request({
-        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name,last_name',
-        qs: { access_token: config.access_token },
+        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name,last_name&access_token=' + config.access_token,
         method: 'GET'
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
