@@ -981,10 +981,7 @@ function getUserData(id) {
         method: 'GET'
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log(body);
-            var data = JSON.parse(body);
-            console.log(data);
-            sendTextMessage(id, 'Hey, ' + data.first_name + '!');
+            sendTextMessage(id, 'Hey, ' + JSON.parse(body).first_name + '!');
         } else {
             console.error("Unable to send message.");
             console.error(response);
