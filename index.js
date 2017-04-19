@@ -252,6 +252,8 @@ function receivedPostback(event) {
         sendMeme(senderID);
     } else if (payload.includes('verse')) {
         sendVerse(senderID);
+    } else if (payload.includes('started')) {
+        sendGreeting(senderID);
     } else {
         sendTextMessage(senderID, payload);
     }
