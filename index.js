@@ -269,7 +269,6 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
-    getUserData(id);
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Wazzup! Did you know ' +
     'some people say I\'m the only apostle who died a natural death? 3:)', 'Hey! Want to know what Patmos is like? Not good, I can ' +
@@ -281,10 +280,8 @@ function sendGreeting(id) {
     'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
     'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
     'hot today here on Patmos...maybe even hotter than that lake of fire.'];
-    setTimeout(function() {
-        var m = greetings[Math.floor(Math.random() * greetings.length)];
-        sendTextMessage(id, m);
-    }, 750);
+    var m = greetings[Math.floor(Math.random() * greetings.length)];
+    sendTextMessage(id, m);
 }
 
 function sendFeeling(id) {
@@ -966,21 +963,6 @@ function callSendAPI(messageData) {
 
             console.log("Successfully sent generic message with id %s to recipient %s",
                 messageId, id);
-        } else {
-            console.error("Unable to send message.");
-            console.error(response);
-            console.error(error);
-        }
-    });
-}
-
-function getUserData(id) {
-    request({
-        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name,last_name&access_token=' + config.access_token,
-        method: 'GET'
-    }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            sendTextMessage(id, 'Hey, ' + body.first_name + '! How you doing?');
         } else {
             console.error("Unable to send message.");
             console.error(response);
