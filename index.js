@@ -281,8 +281,10 @@ function sendGreeting(id) {
     'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
     'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
     'hot today here on Patmos...maybe even hotter than that lake of fire.'];
-    var m = greetings[Math.floor(Math.random() * greetings.length)];
-    sendTextMessage(id, m);
+    setTimeout(function() {
+        var m = greetings[Math.floor(Math.random() * greetings.length)];
+        sendTextMessage(id, m);
+    }, 750);
 }
 
 function sendFeeling(id) {
@@ -974,7 +976,7 @@ function callSendAPI(messageData) {
 
 function getUserData(id) {
     request({
-        uri: 'https://graph.facebook.com/v2.9/' + id,
+        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name,last_name&access_token=' + config.access_token
         qs: { access_token: config.access_token },
         method: 'GET'
     }, function (error, response, body) {
