@@ -158,7 +158,10 @@ function routeRequests(msg, id) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 8));
             sendFifthQuestion(id);
         } else if (generateOr(['delilah'], m)) {
-            gameUpdate(id, (Math.floor(Math.random() * 5) + 7));
+            gameUpdate(id, (Math.floor(Math.random() * 5) - 1));
+            sendFifthQuestion(id);
+        } else if (generateOr(['ruth'], m)) {
+            gameUpdate(id, (Math.floor(Math.random() * 5) + 4));
             sendFifthQuestion(id);
         } else if (generateOr(['lit'], m)) {
             gameUpdate(id, (Math.floor(Math.random() * 5) + 10));
@@ -767,7 +770,8 @@ function sendThirdQuestion(id) {
 }
 
 function sendFourthQuestion(id) {
-    var data = [{title: 'Cain', payload: 'Cain'}, {title: 'Jeremiah', payload: 'Jeremiah'}, {title: 'Delilah', payload: 'Delilah'}];
+    var data = [{title: 'Cain', payload: 'Cain'}, {title: 'Jeremiah', payload: 'Jeremiah'}, {title: 'Delilah', payload: 'Delilah'},
+    {title: 'Ruth', payload: 'Ruth'}];
     sendChoices(id, 'If you had to pick one of the following biblical names, which would you choose?', data);
 }
 
@@ -796,15 +800,15 @@ function endGame(id) {
     '( O:) ) Meet me by the golden gates when you get to Heaven ;)',
     '( ;) ) I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...',
     '( O:) ) My, my. You cashed out! See ya later in Heaven. <3'];
-    if (score < 12) {
+    if (score < 15) {
         sendTextMessage(id, results[6]);
-    } else if (score < 18) {
+    } else if (score < 21) {
         sendTextMessage(id, results[5]);
-    } else if (score < 22) {
-        sendTextMessage(id, results[8]);
     } else if (score < 25) {
+        sendTextMessage(id, results[8]);
+    } else if (score < 28) {
         sendTextMessage(id, results[11]);
-    } else if (score > 50) {
+    } else if (score > 53) {
         sendTextMessage(id, results[1]);
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
@@ -937,7 +941,7 @@ function sendChoices(id, prompt, choices) {
     }
 
     data = generateOr(['Commandments'], prompt) ? data : helpers.shuffle(data);
-    
+
     var messageData = {
         recipient: {
             id: id
