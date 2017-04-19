@@ -68,7 +68,7 @@ app.post('/webhook', function (req, res) {
 });
 
 // simple db for game
-var gameData = [];
+var gameData = {};
 
 // incoming events handling
 function receivedMessage(event) {
@@ -783,32 +783,29 @@ function sendSixthQuestion(id) {
 
 function endGame(id) {
     var score = gameData[id];
-    var results = ['I\'m so sorry...you\'ll probs be in Hell.',
-    'Dude! LIT! You\'ll be chilling with me in Heaven!',
-    'Hehe...I know your fate but I\'m a troll and won\'t tell you (unless you play again).',
-    'It\'s 50-50 honestly. Maybe if you cut down on that Netflix binge-watching and go to church more often...',
-    'Chances are not looking good but hey, who says God can\'t work miracles ;)',
-    'If I revealed it you would hate me...',
-    'Do you know what paradise looks like? No? Well you never will...',
-    'Grab your sunglasses cuz you\'re future is looking bright B-)',
-    'Hellish with a chance of salvation...',
-    'Heaven...no Hell...no. Play again, I can\'t really tell.',
-    'Meet me by the golden gates when you get to Heaven ;)',
-    'I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...'];
-    if (score < 8) {
+    var results = ['( 3:) ) I\'m so sorry...you\'ll probs be in Hell.',
+    '( O:) ) Dude! LIT! You\'ll be chilling with me in Heaven!',
+    '( ;) ) Hehe...I know your fate but I\'m a troll and won\'t tell you (unless you play again).',
+    '( ;) ) It\'s 50-50 honestly. Maybe if you cut down on that Netflix binge-watching and go to church more often...',
+    '( 3:) ) Chances are not looking good but hey, who says God can\'t work miracles ;)',
+    '( 3:) ) If I revealed it you would hate me...',
+    '( 3:) ) Do you know what paradise looks like? No? Well you never will...',
+    '( O:) ) Grab your sunglasses cuz you\'re future is looking bright B-)',
+    '( 3:) ) Hellish with a chance of salvation...',
+    '( ;) ) Heaven...no Hell...no. Play again, I can\'t really tell.',
+    '( O:) ) Meet me by the golden gates when you get to Heaven ;)',
+    '( ;) ) I envision you surfing the waves...whether those waves are of the infinite lake of fire or of the holy water I can\'t tell...',
+    '( O:) ) My, my. You cashed out! See ya later in Heaven. <3'];
+    if (score < 12) {
         sendTextMessage(id, results[6]);
-    } else if (score < 10) {
+    } else if (score < 18) {
         sendTextMessage(id, results[5]);
-    } else if (score < 15) {
-        sendTextMessage(id, results[4]);
-    } else if (score < 20) {
-        sendTextMessage(id, results[11]);
-    } else if (score < 25) {
+    } else if (score < 22) {
         sendTextMessage(id, results[8]);
-    } else if (score < 30) {
+    } else if (score < 25) {
+        sendTextMessage(id, results[11]);
+    } else if (score > 50) {
         sendTextMessage(id, results[1]);
-    } else if (score < 35) {
-        sendTextMessage(id, results[7]);
     } else {
         sendTextMessage(id, results[Math.floor(Math.random() * results.length)]);
     }
@@ -981,7 +978,7 @@ function getUserData(id) {
         method: 'GET'
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            sendTextMessage(id, 'Hey, ' + JSON.parse(body).first_name + '!');
+            sendTextMessage(id, 'Hey, ' + JSON.parse(body).first_name + '! :)');
         } else {
             console.error("Unable to send message.");
             console.error(response);
