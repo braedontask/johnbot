@@ -269,19 +269,22 @@ function sendTextMessage(id, m) {
 }
 
 function sendGreeting(id) {
+    getUserData(id);
     var greetings = ['What\'s cooking? Still thinking about why I called it Revelation instead of Revelations...I ' +
     'may have only had one collective vision but trust me--they\'re all weird in their own way.', 'Wazzup! Did you know ' +
-    'some people say I\'m the only apostle who died a natural death? 3:)', 'Hey! Want to know what Patmos is like? Not good, I can ' +
+    'some people say I\'m the only apostle who died a natural death? 3:)', 'Want to know what Patmos is like? Not good, I can ' +
     'tell you that. Literally just watch birds fly over me and those pagans offshore have fun while I sit and ' +
-    'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'Hello! It\'s ' +
-    'a beautiful day out here in Patmos...said no one ever :|', 'Yo! Why do I have an obsession with numbers you ask? ' +
+    'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'It\'s ' +
+    'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
     'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
-    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Hi! Here\'s some ' +
-    'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...', 'Hey, ' +
-    'enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
+    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Here\'s some ' +
+    'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...',
+    'Enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
     'hot today here on Patmos...maybe even hotter than that lake of fire.'];
-    var m = greetings[Math.floor(Math.random() * greetings.length)];
-    sendTextMessage(id, m);
+    setTimeout(function() {
+        var m = greetings[Math.floor(Math.random() * greetings.length)];
+        sendTextMessage(id, m);
+    }, 750);
 }
 
 function sendFeeling(id) {
@@ -963,6 +966,22 @@ function callSendAPI(messageData) {
 
             console.log("Successfully sent generic message with id %s to recipient %s",
                 messageId, id);
+        } else {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        }
+    });
+}
+
+function getUserData(messageData) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/' + id + '?fields=first_name&access_token=' + config.access_token,
+        qs: { access_token: config.access_token },
+        method: 'GET'
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            sendTextMessage(id, 'Hey, ' + body.first_name + '!');
         } else {
             console.error("Unable to send message.");
             console.error(response);
