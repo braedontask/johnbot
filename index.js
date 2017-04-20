@@ -282,7 +282,7 @@ function sendGreeting(id) {
     'try to hide from that weirdo across the water that keeps peeping at me as I try to write.', 'It\'s ' +
     'a beautiful day out here in Patmos...said no one ever :|', 'Why do I have an obsession with numbers you ask? ' +
     'Well, aside from the dank symbolism each number holds, honestly I just wanted to be different from all those ' +
-    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Here\'s some ' +
+    'other authors who run from numbers faster than the pagans will run from God on Judgment Day.', 'Here are some ' +
     'sunglasses B-) jk you won\'t need them because you\'re future beyond earth ain\'t looking so bright...',
     'Enjoy this O:) angel...it might just be the last one you ever see...', 'What\'s up! How are you? Man, it\'s sooo ' +
     'hot today here on Patmos...maybe even hotter than that lake of fire.'];
