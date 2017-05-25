@@ -1,2 +1,2 @@
 # The John Bot
-This is a facebook messenger bot for Josh's AI37 class.
+This is a Facebook Messenger bot for the AESTH-INT 37 final project.
